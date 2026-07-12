@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Người gieo mầm xanh cho con</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ivory: "#FFFDF5",
+              cream: "#F8F6E9",
+              parchment: "#F5F2DF",
+              beige: "#EFE5C4",
+              beigeSoft: "#F5EDCF",
+              olive: "#4C7132",
+              oliveLight: "#A8BE72",
+              oliveSoft: "#C5D58B",
+              moss: "#557A38",
+              bark: "#4B3025",
+              barkSoft: "#5E4437",
+            },
+            fontFamily: {
+              script: ["'Dancing Script'", "cursive"],
+              serif: ["'Cormorant Garamond'", "serif"],
+              sans: ["'Be Vietnam Pro'", "sans-serif"],
+            },
+            boxShadow: {
+              botanical: "0 18px 50px rgba(82, 101, 51, 0.15)",
+              paper: "0 12px 24px rgba(82, 101, 51, 0.12)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background:
+          radial-gradient(
+            circle at 10% 10%,
+            rgba(197, 213, 139, 0.25),
+            transparent 18%
+          ),
+          radial-gradient(
+            circle at 90% 12%,
+            rgba(168, 190, 114, 0.2),
+            transparent 18%
+          ),
+          radial-gradient(
+            circle at 12% 88%,
+            rgba(197, 213, 139, 0.18),
+            transparent 18%
+          ),
+          radial-gradient(
+            circle at 88% 86%,
+            rgba(168, 190, 114, 0.14),
+            transparent 22%
+          ),
+          linear-gradient(180deg, #fffdf5 0%, #f8f6e9 100%);
+      }
+
+      .paper-noise::before,
+      .paper-noise::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .paper-noise::before {
+        background:
+          linear-gradient(115deg, rgba(255, 255, 255, 0.55), transparent 40%),
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 255, 255, 0.65),
+            transparent 20%
+          ),
+          radial-gradient(
+            circle at 70% 25%,
+            rgba(168, 190, 114, 0.06),
+            transparent 18%
+          );
+        mix-blend-mode: screen;
+        opacity: 0.8;
+      }
+
+      .paper-noise::after {
+        background-image: radial-gradient(
+          rgba(76, 113, 50, 0.06) 0.55px,
+          transparent 0.55px
+        );
+        background-size: 16px 16px;
+        opacity: 0.18;
+      }
+
+      .leaf-float {
+        animation: floatLeaf 8s ease-in-out infinite;
+      }
+
+      .leaf-float-delay {
+        animation: floatLeaf 10s ease-in-out infinite 1.5s;
+      }
+
+      .timeline-line {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: 160px;
+        height: 2px;
+        border-top: 2px dashed rgba(76, 113, 50, 0.35);
+        z-index: 0;
+      }
+
+      .timeline-line::before,
+      .timeline-line::after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #4c7132;
+        box-shadow:
+          240px 0 0 rgba(76, 113, 50, 0.8),
+          480px 0 0 rgba(76, 113, 50, 0.8),
+          720px 0 0 rgba(76, 113, 50, 0.8);
+      }
+
+      .timeline-line::before {
+        left: 90px;
+      }
+
+      .timeline-line::after {
+        right: 90px;
+        box-shadow: none;
+      }
+
+      .botanical-stroke {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='20' viewBox='0 0 180 20' fill='none'%3E%3Cpath d='M2 10C28 10 42 5 62 5C82 5 86 15 106 15C127 15 135 8 152 8C162 8 170 10 178 12' stroke='%234C7132' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='1 7'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 180px;
+        height: 20px;
+      }
+
+      .note-tape::before {
+        content: "";
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        width: 82px;
+        height: 28px;
+        transform: translateX(-50%) rotate(-3deg);
+        background: rgba(245, 237, 207, 0.92);
+        border: 1px solid rgba(166, 143, 94, 0.12);
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(94, 68, 55, 0.08);
+      }
+
+      .music-spin:hover svg {
+        transform: rotate(8deg);
+      }
+
+      @keyframes floatLeaf {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(3deg);
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .timeline-line {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans text-bark antialiased">
+    <div
+      class="fixed inset-y-0 left-0 hidden w-28 lg:block pointer-events-none"
+    >
+      <div class="leaf-float absolute left-3 top-20 text-olive/20">
+        <svg
+          width="88"
+          height="220"
+          viewBox="0 0 88 220"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M44 3C44 63 42 100 37 130C31 165 20 190 11 214"
+            stroke="currentColor"
+            stroke-width="2.6"
+            stroke-linecap="round"
+          />
+          <path
+            d="M46 24C29 22 17 31 12 48C28 50 41 43 46 24Z"
+            fill="currentColor"
+          />
+          <path
+            d="M43 63C60 58 69 44 72 27C56 31 45 45 43 63Z"
+            fill="currentColor"
+          />
+          <path
+            d="M38 98C24 95 11 104 4 119C18 121 33 112 38 98Z"
+            fill="currentColor"
+          />
+          <path
+            d="M36 141C51 138 63 126 68 111C52 113 41 123 36 141Z"
+            fill="currentColor"
+          />
+          <path
+            d="M28 176C15 173 5 182 1 196C15 197 24 189 28 176Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <div
+      class="fixed inset-y-0 right-0 hidden w-28 lg:block pointer-events-none"
+    >
+      <div class="leaf-float-delay absolute right-3 top-32 text-olive/20">
+        <svg
+          width="90"
+          height="240"
+          viewBox="0 0 90 240"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M47 5C48 70 52 117 59 150C66 182 75 205 84 233"
+            stroke="currentColor"
+            stroke-width="2.6"
+            stroke-linecap="round"
+          />
+          <path
+            d="M45 36C59 32 69 19 75 4C61 7 49 19 45 36Z"
+            fill="currentColor"
+          />
+          <path
+            d="M49 80C33 76 20 85 13 102C28 104 43 95 49 80Z"
+            fill="currentColor"
+          />
+          <path
+            d="M57 124C71 119 82 107 88 91C72 94 61 105 57 124Z"
+            fill="currentColor"
+          />
+          <path
+            d="M61 170C47 166 35 174 28 190C43 192 57 184 61 170Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <main class="relative mx-auto max-w-[1360px] px-3 py-5 md:px-5 lg:px-6">
+      <div
+        class="paper-noise relative overflow-hidden rounded-[26px] border border-white/60 bg-[rgba(255,253,245,0.88)] shadow-botanical backdrop-blur-sm"
+      >
+        <div
+          class="absolute -left-6 top-28 h-36 w-36 rounded-full bg-oliveSoft/15 blur-3xl"
+        ></div>
+        <div
+          class="absolute right-20 top-14 h-28 w-28 rounded-full bg-beige/50 blur-2xl"
+        ></div>
+        <div
+          class="absolute bottom-12 right-12 h-32 w-32 rounded-full bg-oliveLight/10 blur-3xl"
+        ></div>
+
+        <header
+          class="relative z-20 flex items-center justify-between border-b border-white/50 bg-[rgba(255,251,240,0.72)] px-5 py-4 backdrop-blur md:px-7 lg:px-8"
+        >
+          <a href="#trang-chu" class="shrink-0">
+            <div
+              class="font-script text-[26px] leading-[1.05] text-olive md:text-[30px]"
+            >
+              <p>Người gieo mầm xanh</p>
+              <p>cho con ♡</p>
+            </div>
+            <div class="botanical-stroke mt-2 w-32"></div>
+          </a>
+
+          <nav
+            class="hidden items-center gap-8 font-serif text-[17px] text-barkSoft lg:flex xl:gap-12"
+          >
+            <a
+              href="#trang-chu"
+              class="border-b-2 border-olive pb-2 font-semibold text-bark"
+              >Trang chủ</a
+            >
+            <a href="#ky-niem" class="transition hover:text-olive">Kỷ niệm</a>
+            <a href="#kinh-trong" class="transition hover:text-olive"
+              >Điều em kính trọng</a
+            >
+            <a href="#loi-nhan" class="transition hover:text-olive"
+              >Lời muốn nói</a
+            >
+            <a href="#sinh-nhat" class="transition hover:text-olive"
+              >Sinh nhật cô</a
+            >
+          </nav>
+
+          <div class="flex items-center gap-3">
+            <button
+              id="musicButton"
+              type="button"
+              class="music-spin hidden h-10 w-10 items-center justify-center rounded-full bg-olive text-white shadow-paper transition duration-300 hover:-translate-y-0.5 hover:scale-105 hover:brightness-110 md:flex"
+              aria-label="Nút gợi nhớ âm nhạc"
+            >
+              <svg
+                class="transition-transform duration-300"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M16 3v10.55A4 4 0 1 0 18 17V7h3V3h-5Z" />
+              </svg>
+            </button>
+
+            <button
+              id="menuButton"
+              type="button"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-olive/10 bg-white/70 text-olive shadow-paper lg:hidden"
+              aria-label="Mở menu"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              >
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <div
+          id="mobileMenu"
+          class="hidden border-b border-white/50 bg-[rgba(255,251,240,0.9)] px-5 py-4 lg:hidden"
+        >
+          <nav class="flex flex-col gap-3 font-serif text-lg text-barkSoft">
+            <a
+              href="#trang-chu"
+              class="rounded-xl bg-white/60 px-4 py-3 text-olive"
+              >Trang chủ</a
+            >
+            <a
+              href="#ky-niem"
+              class="rounded-xl px-4 py-3 transition hover:bg-white/60"
+              >Kỷ niệm</a
+            >
+            <a
+              href="#kinh-trong"
+              class="rounded-xl px-4 py-3 transition hover:bg-white/60"
+              >Điều em kính trọng</a
+            >
+            <a
+              href="#loi-nhan"
+              class="rounded-xl px-4 py-3 transition hover:bg-white/60"
+              >Lời muốn nói</a
+            >
+            <a
+              href="#sinh-nhat"
+              class="rounded-xl px-4 py-3 transition hover:bg-white/60"
+              >Sinh nhật cô</a
+            >
+          </nav>
+        </div>
+
+        <section id="trang-chu" class="relative overflow-hidden">
+          <div
+            class="grid min-h-[430px] items-center gap-8 px-5 pb-16 pt-10 md:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-[70px] lg:pb-20 lg:pt-10"
+          >
+            <div class="relative z-10 max-w-[460px]">
+              <div class="absolute -left-4 -top-4 text-olive/30">
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  <path
+                    d="M22 4C20 13 13 20 4 22C13 24 20 31 22 40C24 31 31 24 40 22C31 20 24 13 22 4Z"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+                </svg>
+              </div>
+
+              <h1
+                class="font-script text-[56px] leading-[0.95] text-olive sm:text-[62px] md:text-[68px] xl:text-[76px]"
+              >
+                <span class="block">Người gieo</span>
+                <span class="block">mầm xanh</span>
+                <span class="block text-bark">cho con</span>
+              </h1>
+
+              <p
+                class="mt-6 max-w-[420px] font-serif text-[18px] leading-[1.7] text-barkSoft"
+              >
+                Cảm ơn cô - người đã gieo những hạt mầm tốt đẹp trong hành trình
+                trưởng thành của con.
+              </p>
+
+              <div class="mt-7">
+                <a
+                  href="#ky-niem"
+                  class="inline-flex items-center gap-3 rounded-[10px] bg-gradient-to-r from-olive to-moss px-6 py-4 text-[16px] font-medium text-white shadow-paper transition duration-300 hover:-translate-y-0.5 hover:shadow-botanical hover:brightness-110"
+                >
+                  Bắt đầu hành trình
+                  <span class="text-lg">♡</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="relative min-h-[420px]">
+              <div
+                class="absolute inset-x-0 top-4 mx-auto h-[360px] max-w-[560px] overflow-hidden rounded-[34px] bg-gradient-to-r from-cream via-white/70 to-transparent shadow-paper"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80"
+                  alt="Hình ảnh cô giáo và học sinh"
+                  class="h-full w-full object-cover [mask-image:linear-gradient(to_left,rgba(0,0,0,1),rgba(0,0,0,0.88),rgba(0,0,0,0.35),transparent)]"
+                />
+              </div>
+
+              <div
+                class="note-tape absolute right-0 top-6 z-10 w-[210px] rotate-[1.8deg] rounded-[18px] border border-[#e8dfc2] bg-beigeSoft px-6 py-8 text-center shadow-paper md:right-2"
+              >
+                <p class="font-script text-[28px] leading-[1.25] text-barkSoft">
+                  Có những người
+                  <br />lặng lẽ đi qua cuộc đời ta <br />để lại những dấu ấn
+                  <br />không bao giờ phai...
+                </p>
+                <div class="mt-4 text-center text-olive">♡</div>
+              </div>
+
+              <div class="absolute bottom-1 right-12 hidden md:block">
+                <div class="relative h-24 w-36">
+                  <div
+                    class="absolute bottom-0 left-2 h-10 w-32 rounded-b-[24px] rounded-t-[10px] bg-[#ceb789] shadow-paper"
+                  ></div>
+                  <div
+                    class="absolute bottom-7 left-0 h-14 w-[70px] origin-bottom-right -rotate-6 rounded-l-[18px] rounded-r-[8px] bg-[#f7f2e3] shadow-paper"
+                  ></div>
+                  <div
+                    class="absolute bottom-7 right-0 h-14 w-[70px] origin-bottom-left rotate-6 rounded-l-[8px] rounded-r-[18px] bg-[#fffaf0] shadow-paper"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="absolute -left-2 top-2 hidden text-olive/25 lg:block">
+                <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+                  <path
+                    d="M59 20C58 49 54 68 45 90"
+                    stroke="currentColor"
+                    stroke-width="2.3"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M60 30C46 29 37 38 33 50C47 51 57 43 60 30Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M54 60C67 59 75 49 79 38C66 40 57 48 54 60Z"
+                    fill="currentColor"
+                  />
+                  <circle cx="92" cy="84" r="4" fill="currentColor" />
+                  <circle cx="100" cy="91" r="2.8" fill="currentColor" />
+                  <circle cx="85" cy="95" r="3.2" fill="currentColor" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="#ky-niem"
+            class="absolute bottom-3 left-1/2 z-20 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border border-white/80 bg-[#fbf5e7] text-olive shadow-paper transition hover:-translate-y-1"
+            aria-label="Cuộn xuống phần tiếp theo"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </a>
+        </section>
+
+        <section id="ky-niem" class="px-3 pb-4 md:px-4">
+          <div
+            class="relative rounded-[22px] border border-[#efe6c6] bg-[#fffaf0] p-4 shadow-paper md:p-5"
+          >
+            <div class="grid gap-5 lg:grid-cols-[160px_minmax(0,1fr)]">
+              <div
+                class="flex flex-col justify-between rounded-[18px] bg-gradient-to-b from-[#fffdf5] to-[#f6f0dd] p-5"
+              >
+                <div>
+                  <h2 class="font-script text-[28px] leading-[1.02] text-olive">
+                    Hành trình
+                    <br />kỷ niệm ♡
+                  </h2>
+                  <div class="botanical-stroke mt-3 w-28"></div>
+                  <p
+                    class="mt-4 font-serif text-[17px] leading-[1.6] text-barkSoft"
+                  >
+                    Những khoảnh khắc em luôn ghi nhớ về cô.
+                  </p>
+                </div>
+
+                <div class="mt-8 flex items-end justify-center">
+                  <svg width="90" height="100" viewBox="0 0 90 100" fill="none">
+                    <path
+                      d="M34 85C22 70 21 54 32 42C40 33 53 32 61 39C72 49 69 68 56 80C50 86 43 89 34 85Z"
+                      fill="#C5D58B"
+                    />
+                    <path
+                      d="M45 34V86"
+                      stroke="#4C7132"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M45 46C34 38 24 39 18 50C30 53 40 52 45 46Z"
+                      fill="#A8BE72"
+                    />
+                    <path
+                      d="M45 59C55 50 66 50 72 62C61 65 50 64 45 59Z"
+                      fill="#A8BE72"
+                    />
+                    <path
+                      d="M24 88H66C66 94 62 98 56 98H34C28 98 24 94 24 88Z"
+                      fill="#CBA776"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="relative">
+                <div class="timeline-line hidden xl:block"></div>
+                <div
+                  class="grid gap-4 md:grid-cols-2 xl:grid-cols-5 xl:gap-[22px]"
+                >
+                  <article
+                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80"
+                      alt="Kỷ niệm đầu tiên"
+                      class="h-28 w-full object-cover"
+                    />
+                    <div class="p-4">
+                      <div class="flex items-center gap-3">
+                        <span
+                          class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
+                          >01</span
+                        >
+                        <h3 class="font-serif text-xl font-semibold text-bark">
+                          Lần đầu tiên
+                        </h3>
+                      </div>
+                      <p
+                        class="mt-4 font-serif text-[17px] leading-[1.5] text-barkSoft"
+                      >
+                        Ngày đầu biết đến cô, em đã cảm nhận được sự gần gũi và
+                        ấm áp từ cô.
+                      </p>
+                    </div>
+                  </article>
+
+                  <article
+                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80"
+                      alt="Lời động viên đáng nhớ"
+                      class="h-28 w-full object-cover"
+                    />
+                    <div class="p-4">
+                      <div class="flex items-center gap-3">
+                        <span
+                          class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
+                          >02</span
+                        >
+                        <h3 class="font-serif text-xl font-semibold text-bark">
+                          Một lời động viên
+                        </h3>
+                      </div>
+                      <p
+                        class="mt-4 font-serif text-[17px] leading-[1.5] text-barkSoft"
+                      >
+                        Có những lúc em buồn và mất tự tin, cô đã nói những lời
+                        khiến em mạnh mẽ hơn rất nhiều.
+                      </p>
+                    </div>
+                  </article>
+
+                  <article
+                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=900&q=80"
+                      alt="Một kỷ niệm nhỏ"
+                      class="h-28 w-full object-cover"
+                    />
+                    <div class="p-4">
+                      <div class="flex items-center gap-3">
+                        <span
+                          class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
+                          >03</span
+                        >
+                        <h3 class="font-serif text-xl font-semibold text-bark">
+                          Một kỷ niệm nhỏ
+                        </h3>
+                      </div>
+                      <p
+                        class="mt-4 font-serif text-[17px] leading-[1.5] text-barkSoft"
+                      >
+                        Có thể đó là việc nhỏ với cô, nhưng với em đó là kỷ niệm
+                        rất đáng nhớ.
+                      </p>
+                    </div>
+                  </article>
+
+                  <article
+                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=80"
+                      alt="Bài học lớn"
+                      class="h-28 w-full object-cover"
+                    />
+                    <div class="p-4">
+                      <div class="flex items-center gap-3">
+                        <span
+                          class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
+                          >04</span
+                        >
+                        <h3 class="font-serif text-xl font-semibold text-bark">
+                          Một bài học lớn
+                        </h3>
+                      </div>
+                      <p
+                        class="mt-4 font-serif text-[17px] leading-[1.5] text-barkSoft"
+                      >
+                        Từ những lời dạy của cô, em học được cách sống tốt hơn
+                        mỗi ngày.
+                      </p>
+                    </div>
+                  </article>
+
+                  <article
+                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"
+                      alt="Những khoảnh khắc không thể quên"
+                      class="h-28 w-full object-cover"
+                    />
+                    <div class="p-4">
+                      <div class="flex items-center gap-3">
+                        <span
+                          class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
+                          >05</span
+                        >
+                        <h3
+                          class="font-serif text-xl font-semibold leading-tight text-bark"
+                        >
+                          Những khoảnh khắc không thể quên
+                        </h3>
+                      </div>
+                      <p
+                        class="mt-4 font-serif text-[17px] leading-[1.5] text-barkSoft"
+                      >
+                        Tất cả những điều đó đã trở thành hành trang quý giá của
+                        em.
+                      </p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="kinh-trong" class="px-3 pb-4 md:px-4">
+          <div class="grid gap-3 lg:grid-cols-[1fr_2fr_1.4fr]">
+            <div class="rounded-[18px] bg-[#fffaf0] p-5 shadow-paper">
+              <h2 class="font-script text-[34px] leading-[1.04] text-olive">
+                Điều em
+                <br />kính trọng <br />ở cô ♡
+              </h2>
+              <div class="mt-4 text-olive/40">
+                <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                  <path
+                    d="M6 24C21 19 28 10 36 4C43 14 49 19 63 23C51 28 45 31 36 38C28 31 20 27 6 24Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M76 22C87 18 94 11 98 4C105 12 110 18 116 21C107 24 102 28 98 35C92 29 87 24 76 22Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              class="grid rounded-[18px] bg-[#fffaf0] shadow-paper sm:grid-cols-2 xl:grid-cols-4"
+            >
+              <div
+                class="border-b border-r border-[#efe7c9] p-5 text-center xl:border-b-0"
+              >
+                <div
+                  class="mx-auto flex h-[65px] w-[65px] items-center justify-center rounded-full bg-beigeSoft text-olive"
+                >
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12.1 21.35 10.65 20C5.4 15.24 2 12.16 2 8.38 2 5.3 4.42 3 7.44 3c1.7 0 3.34.8 4.4 2.06A5.82 5.82 0 0 1 16.24 3C19.26 3 21.68 5.3 21.68 8.38c0 3.78-3.4 6.86-8.65 11.62l-1.43 1.35h.5Z"
+                    />
+                  </svg>
+                </div>
+                <h3 class="mt-4 font-serif text-[25px] font-semibold text-bark">
+                  Tận tâm
+                </h3>
+                <p
+                  class="mt-2 font-serif text-[17px] leading-[1.5] text-barkSoft"
+                >
+                  Cô luôn hết lòng vì học sinh và nhà trường.
+                </p>
+              </div>
+
+              <div
+                class="border-b border-[#efe7c9] p-5 text-center sm:border-r xl:border-b-0"
+              >
+                <div
+                  class="mx-auto flex h-[65px] w-[65px] items-center justify-center rounded-full bg-beigeSoft text-olive"
+                >
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z"
+                    />
+                    <path
+                      d="M7 8.5h7M7 12h9M7 15.5h6"
+                      stroke="#FFFDF5"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+                <h3 class="mt-4 font-serif text-[25px] font-semibold text-bark">
+                  Trách nhiệm
+                </h3>
+                <p
+                  class="mt-2 font-serif text-[17px] leading-[1.5] text-barkSoft"
+                >
+                  Cô luôn là tấm gương về sự trách nhiệm và nghiêm túc.
+                </p>
+              </div>
+
+              <div class="border-r border-[#efe7c9] p-5 text-center">
+                <div
+                  class="mx-auto flex h-[65px] w-[65px] items-center justify-center rounded-full bg-beigeSoft text-olive"
+                >
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 21c-3.63-3.14-7.5-6.24-7.5-10.37A4.63 4.63 0 0 1 9.16 6c1.11 0 2.18.4 2.84 1.16A3.89 3.89 0 0 1 14.84 6a4.63 4.63 0 0 1 4.66 4.63C19.5 14.76 15.63 17.86 12 21Z"
+                    />
+                    <circle cx="8" cy="10" r="0.8" fill="#FFFDF5" />
+                    <circle cx="16" cy="10" r="0.8" fill="#FFFDF5" />
+                  </svg>
+                </div>
+                <h3 class="mt-4 font-serif text-[25px] font-semibold text-bark">
+                  Yêu thương
+                </h3>
+                <p
+                  class="mt-2 font-serif text-[17px] leading-[1.5] text-barkSoft"
+                >
+                  Sự yêu thương của cô luôn dành cho học sinh.
+                </p>
+              </div>
+
+              <div class="p-5 text-center">
+                <div
+                  class="mx-auto flex h-[65px] w-[65px] items-center justify-center rounded-full bg-beigeSoft text-olive"
+                >
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="m12 2.5 2.8 5.67 6.26.91-4.53 4.42 1.07 6.25L12 16.8 6.4 19.75l1.07-6.25L2.94 9.08l6.26-.91L12 2.5Z"
+                    />
+                  </svg>
+                </div>
+                <h3 class="mt-4 font-serif text-[25px] font-semibold text-bark">
+                  Truyền cảm hứng
+                </h3>
+                <p
+                  class="mt-2 font-serif text-[17px] leading-[1.5] text-barkSoft"
+                >
+                  Cô là người truyền động lực để em cố gắng mỗi ngày.
+                </p>
+              </div>
+            </div>
+
+            <article
+              id="loi-nhan"
+              class="rounded-[18px] bg-gradient-to-br from-[#fffaf0] via-[#f8f2e1] to-[#f5edcf] p-5 shadow-paper"
+            >
+              <div
+                class="flex h-full flex-col gap-5 xl:flex-row xl:items-center"
+              >
+                <div
+                  class="relative flex min-h-[170px] flex-1 items-center justify-center overflow-hidden rounded-[16px] bg-gradient-to-br from-oliveSoft/60 to-oliveLight/30"
+                >
+                  <div
+                    class="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(255,255,255,0.42),transparent_28%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.28),transparent_25%)]"
+                  ></div>
+                  <div class="relative w-40">
+                    <div
+                      class="h-24 rounded-t-[18px] bg-[#91ab63] shadow-paper"
+                    ></div>
+                    <div
+                      class="mx-auto -mt-2 h-0 w-0 border-l-[80px] border-r-[80px] border-t-[58px] border-l-transparent border-r-transparent border-t-[#7e9856]"
+                    ></div>
+                    <div
+                      class="absolute left-3 top-4 h-16 w-[136px] rounded-[14px] border border-white/40 bg-white/20"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="flex-1">
+                  <h2 class="font-script text-[34px] text-olive">
+                    Lời muốn nói ♡
+                  </h2>
+                  <p
+                    class="mt-3 font-serif text-[18px] leading-[1.65] text-barkSoft"
+                  >
+                    Những lời em muốn gửi đến cô nhưng chưa từng nói trực
+                    tiếp...
+                  </p>
+                  <button
+                    type="button"
+                    class="mt-6 inline-flex items-center gap-3 rounded-[8px] bg-olive px-6 py-3 text-white shadow-paper transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+                  >
+                    Mở lá thư
+                    <span>♡</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sinh-nhat" class="px-3 pb-6 md:px-4 md:pb-7">
+          <div
+            class="relative overflow-hidden rounded-[18px] bg-gradient-to-r from-[#324d22] via-[#49662f] to-[#24361a] px-6 py-7 text-center text-ivory shadow-botanical md:px-10"
+          >
+            <div
+              class="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,221,153,0.25),transparent_24%),radial-gradient(circle_at_80%_15%,rgba(255,221,153,0.18),transparent_22%),radial-gradient(circle_at_75%_80%,rgba(255,214,120,0.14),transparent_25%)]"
+            ></div>
+            <div class="absolute left-0 top-0 h-12 w-full opacity-50">
+              <svg
+                width="100%"
+                height="48"
+                viewBox="0 0 1200 48"
+                preserveAspectRatio="none"
+                fill="none"
+              >
+                <path
+                  d="M20 3C85 20 145 38 210 27C280 15 340 5 404 19C474 34 546 46 615 28C690 8 751 7 821 24C905 45 975 40 1038 24C1088 12 1133 8 1180 18"
+                  stroke="#F8E6A3"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-dasharray="1 18"
+                />
+              </svg>
+            </div>
+            <div class="absolute inset-y-0 right-5 hidden items-center md:flex">
+              <svg width="140" height="120" viewBox="0 0 140 120" fill="none">
+                <path
+                  d="M75 29C89 9 124 12 124 43C124 75 86 90 71 106C55 89 18 74 18 43C18 12 53 9 67 29"
+                  stroke="#F4D588"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <circle cx="108" cy="22" r="3" fill="#F4D588" />
+                <circle cx="121" cy="58" r="3" fill="#F4D588" />
+                <circle cx="93" cy="96" r="3" fill="#F4D588" />
+              </svg>
+            </div>
+            <div class="relative mx-auto max-w-3xl">
+              <h2 class="font-script text-[34px] leading-tight md:text-[40px]">
+                Chúc mừng sinh nhật cô!
+              </h2>
+              <p
+                class="mx-auto mt-3 max-w-3xl font-serif text-[16px] leading-[1.6] text-ivory/95 md:text-[17px]"
+              >
+                Chúc cô luôn mạnh khỏe, hạnh phúc và luôn giữ mãi nụ cười rạng
+                rỡ. Cảm ơn cô vì đã trở thành một phần đẹp đẽ trong những năm
+                tháng học trò của em.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const menuButton = document.getElementById("menuButton");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const musicButton = document.getElementById("musicButton");
+
+      menuButton?.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      mobileMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () =>
+          mobileMenu.classList.add("hidden"),
+        );
+      });
+
+      musicButton?.addEventListener("click", () => {
+        musicButton.classList.toggle("scale-110");
+        musicButton.classList.toggle("brightness-110");
+      });
+    </script>
+  </body>
+</html>
