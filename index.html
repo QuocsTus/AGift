@@ -138,6 +138,26 @@
           720px 0 0 rgba(76, 113, 50, 0.8);
       }
 
+      .letter-scroll {
+        scrollbar-width: thin;
+        scrollbar-color: #8aa060 rgba(239, 229, 196, 0.75);
+      }
+
+      .letter-scroll::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      .letter-scroll::-webkit-scrollbar-track {
+        background: rgba(239, 229, 196, 0.75);
+        border-radius: 999px;
+      }
+
+      .letter-scroll::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #a8be72 0%, #4c7132 100%);
+        border-radius: 999px;
+        border: 2px solid rgba(239, 229, 196, 0.75);
+      }
+
       .timeline-line::before {
         left: 90px;
       }
@@ -269,7 +289,10 @@
       </div>
     </div>
 
-    <main class="relative mx-auto max-w-[1360px] px-3 py-5 md:px-5 lg:px-6">
+    <main
+      id="mainContent"
+      class="relative mx-auto max-w-[1360px] px-3 py-5 md:px-5 lg:px-6"
+    >
       <div
         class="paper-noise relative overflow-hidden rounded-[26px] border border-white/60 bg-[rgba(255,253,245,0.88)] shadow-botanical backdrop-blur-sm"
       >
@@ -290,8 +313,7 @@
             <div
               class="font-script text-[26px] leading-[1.05] text-olive md:text-[30px]"
             >
-              <p>Người gieo mầm xanh</p>
-              <p>cho con ♡</p>
+              <p>Người gieo mầm xanh ♡</p>
             </div>
             <div class="botanical-stroke mt-2 w-32"></div>
           </a>
@@ -299,20 +321,20 @@
           <nav
             class="hidden items-center gap-8 font-serif text-[17px] text-barkSoft lg:flex xl:gap-12"
           >
-            <a
-              href="#trang-chu"
-              class="border-b-2 border-olive pb-2 font-semibold text-bark"
+            <a href="#trang-chu" class="border-olive font-semibold text-bark"
               >Trang chủ</a
             >
-            <a href="#ky-niem" class="transition hover:text-olive">Kỷ niệm</a>
+            <a href="#ky-niem" class="transition hover:text-olive"
+              >Hành trình kỷ niệm</a
+            >
             <a href="#kinh-trong" class="transition hover:text-olive"
-              >Điều em kính trọng</a
+              >Điều con kính trọng</a
             >
             <a href="#loi-nhan" class="transition hover:text-olive"
               >Lời muốn nói</a
             >
             <a href="#sinh-nhat" class="transition hover:text-olive"
-              >Sinh nhật cô</a
+              >Chúc mừng sinh nhật cô</a
             >
           </nav>
 
@@ -369,12 +391,12 @@
             <a
               href="#ky-niem"
               class="rounded-xl px-4 py-3 transition hover:bg-white/60"
-              >Kỷ niệm</a
+              >Hành trình kỷ niệm</a
             >
             <a
               href="#kinh-trong"
               class="rounded-xl px-4 py-3 transition hover:bg-white/60"
-              >Điều em kính trọng</a
+              >Điều con kính trọng</a
             >
             <a
               href="#loi-nhan"
@@ -384,14 +406,14 @@
             <a
               href="#sinh-nhat"
               class="rounded-xl px-4 py-3 transition hover:bg-white/60"
-              >Sinh nhật cô</a
+              >Chúc mừng sinh nhật cô</a
             >
           </nav>
         </div>
 
         <section id="trang-chu" class="relative overflow-hidden">
           <div
-            class="grid min-h-[430px] items-center gap-8 px-5 pb-16 pt-10 md:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-[70px] lg:pb-20 lg:pt-10"
+            class="grid min-h-[620px] items-center gap-8 px-5 pb-16 pt-10 md:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-[70px] lg:pb-20 lg:pt-10"
           >
             <div class="relative z-10 max-w-[460px]">
               <div class="absolute -left-4 -top-4 text-olive/30">
@@ -409,7 +431,6 @@
               >
                 <span class="block">Người gieo</span>
                 <span class="block">mầm xanh</span>
-                <span class="block text-bark">cho con</span>
               </h1>
 
               <p
@@ -430,18 +451,18 @@
               </div>
             </div>
 
-            <div class="relative min-h-[420px]">
+            <div class="relative min-h-[460px]">
               <div
-                class="absolute inset-x-0 top-4 mx-auto h-[360px] max-w-[560px] overflow-hidden rounded-[34px] bg-gradient-to-r from-cream via-white/70 to-transparent shadow-paper"
+                class="absolute inset-x-0 top-4 mx-auto h-[460px] max-w-[560px] overflow-hidden rounded-[34px] bg-gradient-to-r from-cream via-white/70 to-transparent shadow-paper"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80"
+                  src="assets/anh-nen-6.png"
                   alt="Hình ảnh cô giáo và học sinh"
-                  class="h-full w-full object-cover [mask-image:linear-gradient(to_left,rgba(0,0,0,1),rgba(0,0,0,0.88),rgba(0,0,0,0.35),transparent)]"
+                  class="h-full w-full object-cover object-top"
                 />
               </div>
 
-              <div
+              <!-- <div
                 class="note-tape absolute right-0 top-6 z-10 w-[210px] rotate-[1.8deg] rounded-[18px] border border-[#e8dfc2] bg-beigeSoft px-6 py-8 text-center shadow-paper md:right-2"
               >
                 <p class="font-script text-[28px] leading-[1.25] text-barkSoft">
@@ -464,29 +485,7 @@
                     class="absolute bottom-7 right-0 h-14 w-[70px] origin-bottom-left rotate-6 rounded-l-[8px] rounded-r-[18px] bg-[#fffaf0] shadow-paper"
                   ></div>
                 </div>
-              </div>
-
-              <div class="absolute -left-2 top-2 hidden text-olive/25 lg:block">
-                <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-                  <path
-                    d="M59 20C58 49 54 68 45 90"
-                    stroke="currentColor"
-                    stroke-width="2.3"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M60 30C46 29 37 38 33 50C47 51 57 43 60 30Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M54 60C67 59 75 49 79 38C66 40 57 48 54 60Z"
-                    fill="currentColor"
-                  />
-                  <circle cx="92" cy="84" r="4" fill="currentColor" />
-                  <circle cx="100" cy="91" r="2.8" fill="currentColor" />
-                  <circle cx="85" cy="95" r="3.2" fill="currentColor" />
-                </svg>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -561,20 +560,34 @@
               <div class="relative">
                 <div class="timeline-line hidden xl:block"></div>
                 <div
-                  class="grid gap-4 md:grid-cols-2 xl:grid-cols-5 xl:gap-[22px]"
+                  class="grid gap-4 md:grid-cols-2 xl:grid-cols-4 xl:gap-[22px]"
                 >
                   <article
-                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                    class="group relative z-10 cursor-pointer overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                    data-journey-tab
+                    data-journey-image="assets/anh-hanhtrinh-1.png"
+                    data-journey-alt="Hành trình đầu tiên"
+                    data-journey-title="Lần đầu con được gặp cô"
+                    data-journey-message="
+Con vẫn nhớ lần đầu tiên con được tiếp xúc gần với cô.
+Đó là khi con được đi thi Tin học trẻ cấp thành phố và cô đã trao cho con một món quà nhỏ để động viên.
+Có thể với cô, đó là một món quà nhỏ, là một sự quan tâm rất đỗi bình thường dành cho học sinh trước một cuộc thi. Nhưng đối với con, đó lại là một kỷ niệm rất đặc biệt mà đến bây giờ con vẫn nhớ rất rõ.
+Con nhớ cảm giác lúc ấy không chỉ là vui, mà còn là xúc động. Bởi vì giữa rất nhiều công việc, rất nhiều trách nhiệm và biết bao học sinh trong trường, cô vẫn dành cho con một sự động viên thật ấm áp. Điều đó làm con cảm thấy rằng phía sau mình luôn có cô dõi theo, tin tưởng và khích lệ.
+Có lẽ chính từ khoảnh khắc ấy, hình ảnh của cô trong con đã trở nên đặc biệt hơn rất nhiều.
+Có lẽ cũng từ lần gặp đầu tiên ấy, hình ảnh của cô trong con không chỉ là cô hiệu trưởng — một người mà con kính trọng nhưng cũng có phần e dè vì nghĩ cô sẽ nghiêm khắc và khó gần. Mà con nhận ra rằng đằng sau vị trí của một người lãnh đạo là một tấm lòng rất ấm áp, rất tinh tế và đầy yêu thương dành cho học sinh.
+Bây giờ khi nhớ lại, con vẫn thấy biết ơn vô cùng. Biết ơn vì ngay từ những ngày đầu, cô đã gieo vào lòng con một cảm giác ấm áp, được yêu thương và được tin tưởng.
+Và có lẽ cũng từ khoảnh khắc đó, cô đã bắt đầu trở thành một người rất đặc biệt trong hành trình trưởng thành của con.
+"
                   >
                     <img
-                      src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80"
+                      src="assets/anh-hanhtrinh-1.png"
                       alt="Kỷ niệm đầu tiên"
                       class="h-28 w-full object-cover"
                     />
                     <div class="p-4">
                       <div class="flex items-center gap-3">
                         <span
-                          class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
+                          class="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
                           >01</span
                         >
                         <h3 class="font-serif text-xl font-semibold text-bark">
@@ -591,37 +604,20 @@
                   </article>
 
                   <article
-                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                    class="group relative z-10 cursor-pointer overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                    data-journey-tab
+                    data-journey-image="assets/anh-kiniem-2.jpg|assets/anh-kiniem-1.jpg"
+                    data-journey-alt="Một kỷ niệm nhỏ"
+                    data-journey-title="Những điều nhỏ bé con không thể quên"
+                    data-journey-message="Con vẫn nhớ những ngày cô vào Sài Gòn cùng nhóm chúng con để tham gia cuộc thi.
+Giữa những ngày thi đầy áp lực và mệt mỏi, cô luôn ở bên, chăm lo cho tụi con từng chút một.
+Con nhớ lúc cô lau mồ hôi cho con, nhắc con uống nước, rồi lo từng bữa ăn vì sợ chúng con mệt, sợ chúng con không đủ sức để tiếp tục cuộc thi.
+Đó đều là những điều rất nhỏ thôi...Nhưng với con, lại là những kỷ niệm vô cùng quý giá. Khoảnh khắc ấy, con không còn chỉ cảm nhận cô là một cô hiệu trưởng đang đưa học sinh đi thi. Con cảm nhận được sự yêu thương, sự ân cần và những hy sinh thầm lặng cô dành cho chúng con.
+Có lẽ cô không biết rằng, con đã nhớ những điều ấy rất lâu.
+Và mỗi khi nghĩ lại, con vẫn luôn thấy mình thật may mắn vì đã từng được cô yêu thương và chăm sóc như thế."
                   >
                     <img
-                      src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80"
-                      alt="Lời động viên đáng nhớ"
-                      class="h-28 w-full object-cover"
-                    />
-                    <div class="p-4">
-                      <div class="flex items-center gap-3">
-                        <span
-                          class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
-                          >02</span
-                        >
-                        <h3 class="font-serif text-xl font-semibold text-bark">
-                          Một lời động viên
-                        </h3>
-                      </div>
-                      <p
-                        class="mt-4 font-serif text-[17px] leading-[1.5] text-barkSoft"
-                      >
-                        Có những lúc em buồn và mất tự tin, cô đã nói những lời
-                        khiến em mạnh mẽ hơn rất nhiều.
-                      </p>
-                    </div>
-                  </article>
-
-                  <article
-                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=900&q=80"
+                      src="assets/anh-kiniem-1.png"
                       alt="Một kỷ niệm nhỏ"
                       class="h-28 w-full object-cover"
                     />
@@ -629,7 +625,7 @@
                       <div class="flex items-center gap-3">
                         <span
                           class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
-                          >03</span
+                          >02</span
                         >
                         <h3 class="font-serif text-xl font-semibold text-bark">
                           Một kỷ niệm nhỏ
@@ -645,10 +641,21 @@
                   </article>
 
                   <article
-                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                    class="group relative z-10 cursor-pointer overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                    data-journey-tab
+                    data-journey-image="assets/anh-baihoc-3.png"
+                    data-journey-fit="contain"
+                    data-journey-alt="Bài học lớn"
+                    data-journey-title="Một bài học lớn từ cô"
+                    data-journey-message="Điều lớn nhất con học được từ cô không nằm trong sách vở.
+Đó là cách yêu thương một người bằng sự quan tâm thật lòng, bằng trách nhiệm và bằng những điều âm thầm mình làm cho họ.
+Từ cô, con hiểu rằng sự mạnh mẽ không có nghĩa là phải lạnh lùng. Một người có thể rất nghiêm khắc, rất quyết đoán, nhưng vẫn có thể dịu dàng và ấm áp với những người mình yêu thương.
+Cô cũng dạy con rằng, khi đã lựa chọn một con đường, hãy cố gắng đi đến cùng bằng tất cả sự chân thành và trách nhiệm của mình.
+Con vẫn còn rất nhiều điều phải học. Nhưng con luôn mong mình có thể trưởng thành hơn mỗi ngày, sống tử tế hơn và biết quan tâm đến người khác nhiều hơn.
+Bởi con đã từng được cô yêu thương như thế."
                   >
                     <img
-                      src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=80"
+                      src="assets/anh-baihoc-1.png"
                       alt="Bài học lớn"
                       class="h-28 w-full object-cover"
                     />
@@ -656,7 +663,7 @@
                       <div class="flex items-center gap-3">
                         <span
                           class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
-                          >04</span
+                          >03</span
                         >
                         <h3 class="font-serif text-xl font-semibold text-bark">
                           Một bài học lớn
@@ -672,18 +679,28 @@
                   </article>
 
                   <article
-                    class="group relative z-10 overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                    class="group relative z-10 cursor-pointer overflow-hidden rounded-[16px] border border-[#efe7c8] bg-ivory shadow-paper transition duration-300 hover:-translate-y-1"
+                    data-journey-tab
+                    data-journey-image="assets/anh-khoanhkhac-1.png|assets/anh-khoanhkhac-2.png"
+                    data-journey-alt="Những khoảnh khắc không thể quên"
+                    data-journey-title="Những khoảnh khắc không thể quên"
+                    data-journey-message="Trong suốt những năm tháng học dưới mái trường Phan Đình Giót, có lẽ điều quý giá nhất mà con nhận được không chỉ là kiến thức, mà còn là sự quan tâm, động viên và đồng hành của cô.
+Con vẫn nhớ những lần đứng trước các cuộc thi với sự lo lắng và thiếu tự tin. Khi ấy, cô luôn là người xuất hiện đúng lúc, nhẹ nhàng động viên và cho con thêm niềm tin để bước tiếp. Chỉ một câu nói hay một tin nhắn cô gửi qua mẹ của cô cũng đủ giúp con vững vàng hơn rất nhiều. 
+Những lần đạt được kết quả tốt, điều đầu tiên con mong muốn là được báo tin cho cô. Niềm vui trong ánh mắt và nụ cười của cô khiến con cảm thấy mọi nỗ lực của mình đều thật ý nghĩa. Và cả những lần chưa đạt được kết quả như mong đợi, cô vẫn luôn ở đó, động viên con đứng dậy và tiếp tục bước đi.
+Có những khoảnh khắc tưởng chừng rất bình thường: một lời hỏi thăm, một nụ cười, một ánh mắt động viên hay một lời khen nhỏ. Nhưng chính những điều giản dị ấy đã trở thành những ký ức đẹp đẽ mà con sẽ luôn mang theo trên hành trình trưởng thành của mình.
+Đối với nhiều người, cô là một cô hiệu trưởng tận tâm. Nhưng đối với riêng con, cô còn là người truyền cảm hứng, người gieo những hạt giống của ước mơ, sự tự tin và lòng quyết tâm. Nhờ có cô, thanh xuân của con dưới mái trường cấp hai đã trở nên rực rỡ hơn, ý nghĩa hơn và đáng nhớ hơn rất nhiều.
+Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, nhưng tình cảm biết ơn, kính trọng và yêu quý mà con dành cho cô sẽ luôn còn mãi."
                   >
                     <img
-                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"
+                      src="assets/anh-khoanhkhac-1.png"
                       alt="Những khoảnh khắc không thể quên"
                       class="h-28 w-full object-cover"
                     />
                     <div class="p-4">
                       <div class="flex items-center gap-3">
                         <span
-                          class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
-                          >05</span
+                          class="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
+                          >04</span
                         >
                         <h3
                           class="font-serif text-xl font-semibold leading-tight text-bark"
@@ -700,6 +717,45 @@
                     </div>
                   </article>
                 </div>
+
+                <div
+                  id="journeyTabPanel"
+                  class="hidden mt-6 overflow-hidden rounded-[18px] border border-[#e8dfbd] bg-[#fffaf0] shadow-paper"
+                >
+                  <div class="grid gap-0 md:grid-cols-[1.1fr_1fr]">
+                    <div class="min-h-[260px] overflow-hidden bg-[#f3ebce]">
+                      <img
+                        id="journeyTabImage"
+                        src="assets/anh-hanhtrinh-1.png"
+                        alt="Hành trình đầu tiên"
+                        class="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div
+                      class="flex flex-col justify-center bg-gradient-to-br from-[#fffaf0] to-[#f7efd8] p-6 md:p-8"
+                    >
+                      <p
+                        class="text-sm font-semibold uppercase tracking-[0.28em] text-olive/70"
+                      >
+                        Kỷ niệm được mở ra
+                      </p>
+                      <h3
+                        id="journeyTabTitle"
+                        class="mt-3 font-serif text-[30px] font-semibold text-bark"
+                      >
+                        Lần đầu tiên
+                      </h3>
+                      <p
+                        id="journeyTabMessage"
+                        class="mt-4 font-serif text-[18px] leading-[1.75] text-barkSoft"
+                      >
+                        Cảm ơn cô vì ngay từ những ngày đầu tiên, cô đã cho em
+                        cảm giác được lắng nghe, được yêu thương và có thêm thật
+                        nhiều động lực để cố gắng.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -709,8 +765,7 @@
           <div class="grid gap-3 lg:grid-cols-[1fr_2fr_1.4fr]">
             <div class="rounded-[18px] bg-[#fffaf0] p-5 shadow-paper">
               <h2 class="font-script text-[34px] leading-[1.04] text-olive">
-                Điều em
-                <br />kính trọng <br />ở cô ♡
+                Điều con kính trọng ở cô ♡
               </h2>
               <div class="mt-4 text-olive/40">
                 <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
@@ -752,7 +807,8 @@
                 <p
                   class="mt-2 font-serif text-[17px] leading-[1.5] text-barkSoft"
                 >
-                  Cô luôn hết lòng vì học sinh và nhà trường.
+                  Cô lặng lẽ cống hiến cả tâm huyết của mình để những hạt mầm
+                  ước mơ của học trò được vươn xa 💚
                 </p>
               </div>
 
@@ -785,7 +841,7 @@
                 <p
                   class="mt-2 font-serif text-[17px] leading-[1.5] text-barkSoft"
                 >
-                  Cô luôn là tấm gương về sự trách nhiệm và nghiêm túc.
+                  Cô luôn là tấm gương về sự trách nhiệm và nghiêm túc. 💚
                 </p>
               </div>
 
@@ -812,7 +868,8 @@
                 <p
                   class="mt-2 font-serif text-[17px] leading-[1.5] text-barkSoft"
                 >
-                  Sự yêu thương của cô luôn dành cho học sinh.
+                  Tình yêu thương của cô đã làm nên những ký ức đẹp nhất của
+                  tuổi học trò 💚
                 </p>
               </div>
 
@@ -837,7 +894,8 @@
                 <p
                   class="mt-2 font-serif text-[17px] leading-[1.5] text-barkSoft"
                 >
-                  Cô là người truyền động lực để em cố gắng mỗi ngày.
+                  Có những người đi qua tuổi học trò rồi trở thành ký ức, còn cô
+                  trở thành nguồn cảm hứng ở lại mãi trong trái tim chúng con💚
                 </p>
               </div>
             </div>
@@ -846,45 +904,47 @@
               id="loi-nhan"
               class="rounded-[18px] bg-gradient-to-br from-[#fffaf0] via-[#f8f2e1] to-[#f5edcf] p-5 shadow-paper"
             >
-              <div
-                class="flex h-full flex-col gap-5 xl:flex-row xl:items-center"
-              >
-                <div
-                  class="relative flex min-h-[170px] flex-1 items-center justify-center overflow-hidden rounded-[16px] bg-gradient-to-br from-oliveSoft/60 to-oliveLight/30"
-                >
-                  <div
-                    class="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(255,255,255,0.42),transparent_28%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.28),transparent_25%)]"
-                  ></div>
-                  <div class="relative w-40">
-                    <div
-                      class="h-24 rounded-t-[18px] bg-[#91ab63] shadow-paper"
-                    ></div>
-                    <div
-                      class="mx-auto -mt-2 h-0 w-0 border-l-[80px] border-r-[80px] border-t-[58px] border-l-transparent border-r-transparent border-t-[#7e9856]"
-                    ></div>
-                    <div
-                      class="absolute left-3 top-4 h-16 w-[136px] rounded-[14px] border border-white/40 bg-white/20"
-                    ></div>
-                  </div>
-                </div>
+              <div class="flex h-full flex-col gap-5">
+                <h2 class="font-script text-[34px] text-olive">
+                  Lời muốn nói ♡
+                </h2>
 
-                <div class="flex-1">
-                  <h2 class="font-script text-[34px] text-olive">
-                    Lời muốn nói ♡
-                  </h2>
-                  <p
-                    class="mt-3 font-serif text-[18px] leading-[1.65] text-barkSoft"
+                <div class="flex flex-col gap-5 xl:flex-row xl:items-center">
+                  <div
+                    class="relative flex min-h-[170px] flex-1 items-center justify-center overflow-hidden rounded-[16px] bg-gradient-to-br from-oliveSoft/60 to-oliveLight/30"
                   >
-                    Những lời em muốn gửi đến cô nhưng chưa từng nói trực
-                    tiếp...
-                  </p>
-                  <button
-                    type="button"
-                    class="mt-6 inline-flex items-center gap-3 rounded-[8px] bg-olive px-6 py-3 text-white shadow-paper transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
-                  >
-                    Mở lá thư
-                    <span>♡</span>
-                  </button>
+                    <div
+                      class="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(255,255,255,0.42),transparent_28%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.28),transparent_25%)]"
+                    ></div>
+                    <div class="relative w-40">
+                      <div
+                        class="h-24 rounded-t-[18px] bg-[#91ab63] shadow-paper"
+                      ></div>
+                      <div
+                        class="mx-auto h-0 w-0 border-l-[80px] border-r-[80px] border-t-[58px] border-l-transparent border-r-transparent border-t-[#7e9856]"
+                      ></div>
+                      <div
+                        class="absolute left-3 top-4 h-16 w-[136px] rounded-[14px] border border-white/40 bg-white/20"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="flex-1">
+                    <p
+                      class="font-serif text-[18px] leading-[1.65] text-barkSoft"
+                    >
+                      Những lời em muốn gửi đến cô nhưng chưa từng nói trực
+                      tiếp...
+                    </p>
+                    <button
+                      id="openLetterButton"
+                      type="button"
+                      class="mt-6 inline-flex items-center gap-3 rounded-[8px] bg-olive px-6 py-3 text-white shadow-paper transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+                    >
+                      Mở lá thư
+                      <span>♡</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </article>
@@ -945,10 +1005,170 @@
       </div>
     </main>
 
+    <div
+      id="letterModal"
+      class="fixed inset-0 z-[70] hidden items-center justify-center bg-[#2f261f]/25 px-4 py-6 backdrop-blur-md"
+    >
+      <div
+        id="letterModalBackdrop"
+        class="absolute inset-0"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="relative z-10 w-full max-w-3xl overflow-hidden rounded-[28px] border border-[#eadfbe] bg-[#fffaf0] shadow-[0_24px_80px_rgba(68,48,37,0.2)]"
+      >
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(197,213,139,0.32),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(243,228,194,0.8),transparent_28%)]"
+        ></div>
+        <div class="relative p-5 md:p-8">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <p
+                class="text-sm font-semibold uppercase tracking-[0.28em] text-olive/70"
+              >
+                Lá thư gửi cô
+              </p>
+            </div>
+            <button
+              id="closeLetterButton"
+              type="button"
+              class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#dbcfae] bg-white/80 text-xl text-olive shadow-paper transition duration-300 hover:-translate-y-0.5"
+              aria-label="Đóng lá thư"
+            >
+              ×
+            </button>
+          </div>
+
+          <div class="mt-6 md:items-center">
+            <div
+              class="letter-scroll max-h-[70vh] overflow-y-auto rounded-[24px] bg-white/65 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-sm md:p-7"
+            >
+              <p
+                class="font-serif text-[21px] leading-[1.9] text-barkSoft md:text-[23px]"
+              >
+                Cô kính yêu!
+              </p>
+              <p
+                class="font-serif text-[21px] leading-[1.9] text-barkSoft md:text-[23px]"
+              >
+                Nếu có một người đã làm cho những năm tháng cấp hai của con trở
+                nên đặc biệt hơn, ý nghĩa hơn và rực rỡ hơn, thì đó chính là cô.
+                Con biết rằng trên hành trình làm nghề của mình, cô đã gặp gỡ và
+                dìu dắt rất nhiều thế hệ học sinh. Có thể rồi thời gian sẽ khiến
+                những gương mặt học trò dần trở thành những ký ức, nhưng với
+                con, cô sẽ luôn là một phần đẹp nhất của tuổi thanh xuân dưới
+                mái trường Phan Đình Giót này. Cảm ơn cô vì đã luôn dành cho
+                chúng con sự yêu thương, quan tâm và tin tưởng. Cảm ơn cô vì
+                những lời động viên vào những lúc con lo lắng, những nụ cười khi
+                con đạt được thành công và cả sự khích lệ khi con gặp khó khăn.
+                Chính những điều tưởng chừng nhỏ bé ấy đã trở thành nguồn động
+                lực lớn lao giúp con trưởng thành hơn mỗi ngày.
+              </p>
+              <p
+                class="font-serif text-[21px] leading-[1.9] text-barkSoft md:text-[23px]"
+              >
+                Nhờ có cô, con hiểu rằng sự cố gắng luôn có ý nghĩa. Nhờ có cô,
+                con học được cách tin vào bản thân mình nhiều hơn. Và cũng nhờ
+                có cô mà những năm tháng cấp hai của con không chỉ là quãng thời
+                gian học tập, mà còn là một hành trình đầy ắp những kỷ niệm đẹp,
+                những bài học quý giá và những cảm xúc không thể nào quên. Rồi
+                mai đây, con sẽ rời xa mái trường này để bước tiếp trên những
+                chặng đường mới. Nhưng con tin rằng, ở bất cứ nơi đâu, con vẫn
+                sẽ luôn nhớ về cô với tất cả sự biết ơn, kính trọng và yêu quý.
+                Bởi cô không chỉ là một cô hiệu trưởng tận tâm, mà còn là người
+                đã gieo vào trái tim con những hạt mầm của ước mơ, niềm tin và
+                lòng nhân ái.
+              </p>
+              <p
+                class="font-serif text-[21px] leading-[1.9] text-barkSoft md:text-[23px]"
+              >
+                Cảm ơn cô vì đã xuất hiện trong thanh xuân của con. Cảm ơn cô vì
+                đã làm cho những năm tháng dưới mái trường này trở thành những
+                ký ức đẹp nhất. Và cảm ơn cô vì đã luôn là người gieo mầm xanh
+                trong trái tim biết bao thế hệ học trò, trong đó có con.
+              </p>
+
+              <p
+                class="flex items-start gap-3 font-serif text-[21px] leading-[1.9] text-barkSoft md:text-[23px]"
+              >
+                <span>
+                  ♥ Chúc cô luôn mạnh khỏe, hạnh phúc và mãi mãi là ngọn lửa
+                  truyền cảm hứng cho những thế hệ học sinh mai sau.
+                </span>
+              </p>
+              <div
+                class="mt-6 h-px w-full bg-gradient-to-r from-transparent via-[#cdb98b] to-transparent"
+              ></div>
+              <p class="mt-5 text-right font-script text-[32px] text-olive">
+                Con yêu cô
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section
+      id="journeyDetailPage"
+      class="hidden min-h-screen px-4 py-6 md:px-8 md:py-10"
+    >
+      <div class="mx-auto max-w-5xl">
+        <button
+          id="journeyBackButton"
+          type="button"
+          class="inline-flex items-center gap-2 rounded-[10px] border border-[#d8cdab] bg-[#fffaf0] px-5 py-3 text-sm font-semibold text-olive shadow-paper transition duration-300 hover:-translate-y-0.5"
+        >
+          Quay lại
+        </button>
+
+        <div
+          class="mt-5 overflow-hidden rounded-[24px] border border-[#e6dcc0] bg-[#fffaf0] shadow-botanical"
+        >
+          <div class="min-h-[calc(100vh-9rem)]">
+            <div
+              id="journeyPageGallery"
+              class="flex h-[640px] items-center justify-center gap-4 bg-[#efe4c2] p-4"
+            >
+              <img
+                id="journeyPageImage"
+                src="assets/anh-hanhtrinh-1.png"
+                alt="Hành trình đầu tiên"
+                class="h-full w-full rounded-[18px] object-cover shadow-paper"
+              />
+            </div>
+            <div
+              class="bg-gradient-to-br from-[#fffaf0] via-[#f9f1db] to-[#f2e7c5] p-7 md:p-10"
+            >
+              <h2
+                id="journeyPageTitle"
+                class="font-serif text-[34px] font-semibold leading-tight text-bark md:text-[42px]"
+              >
+                Lần đầu tiên
+              </h2>
+              <p
+                id="journeyPageMessage"
+                class="mt-6 font-serif text-[22px] leading-[1.8] text-barkSoft"
+              >
+                Cảm ơn cô vì ngay từ những ngày đầu tiên, cô đã cho em cảm giác
+                được lắng nghe, được yêu thương và có thêm thật nhiều động lực
+                để cố gắng.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <script>
       const menuButton = document.getElementById("menuButton");
       const mobileMenu = document.getElementById("mobileMenu");
       const musicButton = document.getElementById("musicButton");
+      const openLetterButton = document.getElementById("openLetterButton");
+      const closeLetterButton = document.getElementById("closeLetterButton");
+      const letterModal = document.getElementById("letterModal");
+      const letterModalBackdrop = document.getElementById(
+        "letterModalBackdrop",
+      );
 
       menuButton?.addEventListener("click", () => {
         mobileMenu.classList.toggle("hidden");
@@ -963,6 +1183,172 @@
       musicButton?.addEventListener("click", () => {
         musicButton.classList.toggle("scale-110");
         musicButton.classList.toggle("brightness-110");
+      });
+
+      const openLetterModal = () => {
+        letterModal?.classList.remove("hidden");
+        letterModal?.classList.add("flex");
+        document.body.classList.add("overflow-hidden");
+      };
+
+      const closeLetterModal = () => {
+        letterModal?.classList.add("hidden");
+        letterModal?.classList.remove("flex");
+        document.body.classList.remove("overflow-hidden");
+      };
+
+      const journeyTabs = document.querySelectorAll("[data-journey-tab]");
+      const mainContent = document.getElementById("mainContent");
+      const journeyDetailPage = document.getElementById("journeyDetailPage");
+      const journeyBackButton = document.getElementById("journeyBackButton");
+      const journeyPageGallery = document.getElementById("journeyPageGallery");
+      const journeyTabImage = document.getElementById("journeyTabImage");
+      const journeyTabTitle = document.getElementById("journeyTabTitle");
+      const journeyTabMessage = document.getElementById("journeyTabMessage");
+      const journeyPageImage = document.getElementById("journeyPageImage");
+      const journeyPageTitle = document.getElementById("journeyPageTitle");
+      const journeyPageMessage = document.getElementById("journeyPageMessage");
+
+      const getJourneyImages = (tab) => {
+        const rawImages =
+          tab.dataset.journeyImages || tab.dataset.journeyImage || "";
+        return rawImages
+          .split("|")
+          .map((image) => image.trim())
+          .filter(Boolean)
+          .slice(0, 2);
+      };
+
+      const getJourneyFitClass = (tab) =>
+        tab.dataset.journeyFit === "contain"
+          ? "object-contain"
+          : "object-cover";
+
+      const renderJourneyGallery = (images, alt, fitClass) => {
+        if (!journeyPageGallery) {
+          return;
+        }
+
+        const galleryImages =
+          images.length > 0 ? images : ["assets/anh-hanhtrinh-1.png"];
+        journeyPageGallery.innerHTML = "";
+
+        if (galleryImages.length === 1) {
+          journeyPageGallery.className =
+            "flex h-[640px] items-center justify-center gap-4 bg-[#efe4c2] p-4";
+
+          const singleWrap = document.createElement("div");
+          singleWrap.className =
+            "flex h-full w-full items-center justify-center";
+
+          const imageElement = document.createElement("img");
+          imageElement.src = galleryImages[0];
+          imageElement.alt = alt;
+          imageElement.className = `h-full w-full rounded-[18px] ${fitClass} shadow-paper`;
+
+          singleWrap.appendChild(imageElement);
+          journeyPageGallery.appendChild(singleWrap);
+          return;
+        }
+
+        journeyPageGallery.className =
+          "grid h-[640px] grid-cols-2 gap-4 bg-[#efe4c2] p-4";
+
+        galleryImages.forEach((imageSrc, index) => {
+          const imageWrap = document.createElement("div");
+          imageWrap.className =
+            "flex h-full items-center justify-center overflow-hidden rounded-[18px] bg-[#e6d8b3]";
+
+          const imageElement = document.createElement("img");
+          imageElement.src = imageSrc;
+          imageElement.alt = `${alt} ${index + 1}`;
+          imageElement.className = `h-full w-full ${fitClass} shadow-paper`;
+
+          imageWrap.appendChild(imageElement);
+          journeyPageGallery.appendChild(imageWrap);
+        });
+      };
+
+      const setActiveJourneyTab = (tab) => {
+        journeyTabs.forEach((item, index) => {
+          const isActive = item === tab;
+          item.classList.toggle("shadow-botanical", isActive);
+          item.classList.toggle("-translate-y-1", isActive);
+          item.classList.toggle("border-transparent", isActive);
+          item.classList.toggle("border-[#efe7c8]", !isActive);
+          item.setAttribute("tabindex", "0");
+          item.setAttribute("role", "button");
+          item.setAttribute("aria-pressed", isActive ? "true" : "false");
+          item.setAttribute("aria-label", `Mở kỷ niệm số ${index + 1}`);
+        });
+
+        if (!journeyTabImage || !journeyTabTitle || !journeyTabMessage) {
+          return;
+        }
+
+        journeyTabImage.src = tab.dataset.journeyImage || "";
+        journeyTabImage.alt = tab.dataset.journeyAlt || "";
+        journeyTabTitle.textContent = tab.dataset.journeyTitle || "";
+        journeyTabMessage.textContent = tab.dataset.journeyMessage || "";
+      };
+
+      const openJourneyDetailPage = (tab) => {
+        const images = getJourneyImages(tab);
+        const fitClass = getJourneyFitClass(tab);
+        const alt = tab.dataset.journeyAlt || "";
+        const title = tab.dataset.journeyTitle || "";
+        const message = tab.dataset.journeyMessage || "";
+
+        setActiveJourneyTab(tab);
+
+        renderJourneyGallery(images, alt, fitClass);
+
+        if (journeyPageTitle) {
+          journeyPageTitle.textContent = title;
+        }
+
+        if (journeyPageMessage) {
+          journeyPageMessage.textContent = message;
+        }
+
+        mainContent?.classList.add("hidden");
+        journeyDetailPage?.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      const closeJourneyDetailPage = () => {
+        journeyDetailPage?.classList.add("hidden");
+        mainContent?.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      journeyTabs.forEach((tab) => {
+        tab.addEventListener("click", () => openJourneyDetailPage(tab));
+        tab.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openJourneyDetailPage(tab);
+          }
+        });
+      });
+
+      journeyBackButton?.addEventListener("click", closeJourneyDetailPage);
+      openLetterButton?.addEventListener("click", openLetterModal);
+      closeLetterButton?.addEventListener("click", closeLetterModal);
+      letterModalBackdrop?.addEventListener("click", closeLetterModal);
+
+      if (journeyTabs.length > 0) {
+        setActiveJourneyTab(journeyTabs[0]);
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (
+          event.key === "Escape" &&
+          letterModal &&
+          !letterModal.classList.contains("hidden")
+        ) {
+          closeLetterModal();
+        }
       });
     </script>
   </body>
