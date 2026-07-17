@@ -190,8 +190,350 @@
         box-shadow: 0 4px 10px rgba(94, 68, 55, 0.08);
       }
 
+      .music-spin {
+        position: relative;
+      }
+
       .music-spin:hover svg {
         transform: rotate(8deg);
+      }
+
+      .music-spin.is-playing::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 24px;
+        height: 2px;
+        border-radius: 999px;
+        background: rgba(255, 248, 222, 0.95);
+        transform: translate(-50%, -50%) rotate(-32deg);
+        box-shadow: 0 0 8px rgba(255, 248, 222, 0.28);
+      }
+
+      .birthday-overlay {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 0.7s ease,
+          visibility 0.7s ease;
+      }
+
+      .birthday-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .birthday-overlay.is-open .birthday-dim {
+        animation: overlayDim 0.8s ease forwards;
+      }
+
+      .birthday-overlay.is-open .birthday-sparkle {
+        animation: sparkleIn 1.4s ease forwards;
+      }
+
+      .birthday-overlay.is-open .birthday-title {
+        animation: titleRise 1s ease 0.35s both;
+      }
+
+      .birthday-overlay.is-open .birthday-stage {
+        animation: cakeRise 1.15s cubic-bezier(0.2, 0.9, 0.24, 1.14) 0.2s both;
+      }
+
+      .birthday-overlay.is-open .birthday-cta {
+        animation: titleRise 0.9s ease 0.75s both;
+      }
+
+      .birthday-glow {
+        background:
+          radial-gradient(
+            circle,
+            rgba(255, 224, 154, 0.72) 0%,
+            rgba(255, 223, 148, 0.3) 42%,
+            rgba(255, 223, 148, 0.08) 70%,
+            transparent 82%
+          ),
+          radial-gradient(
+            circle at 50% 45%,
+            rgba(212, 236, 175, 0.2),
+            transparent 58%
+          );
+        filter: blur(6px);
+      }
+
+      .birthday-particle {
+        position: absolute;
+        border-radius: 999px;
+        animation: driftParticle linear infinite;
+      }
+
+      .birthday-confetti-piece {
+        position: absolute;
+        top: 48%;
+        left: 50%;
+        width: 10px;
+        height: 18px;
+        border-radius: 999px;
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(calc(var(--rotation) * 1deg))
+          translateY(0);
+      }
+
+      .birthday-overlay.is-celebrating .birthday-confetti-piece {
+        animation: confettiBurst 1.5s ease-out forwards;
+        animation-delay: calc(var(--delay) * 1ms);
+      }
+
+      .cake-flame {
+        position: relative;
+        width: 22px;
+        height: 32px;
+        animation: flameDance 1.35s ease-in-out infinite;
+        transform-origin: center bottom;
+        filter: drop-shadow(0 0 18px rgba(255, 195, 87, 0.42));
+      }
+
+      .cake-flame::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 18px;
+        height: 28px;
+        transform: translateX(-50%);
+        border-radius: 60% 60% 78% 78% / 44% 44% 92% 92%;
+        background: radial-gradient(
+          circle at 50% 22%,
+          rgba(255, 251, 231, 0.98) 0%,
+          rgba(255, 241, 183, 0.92) 26%,
+          rgba(255, 181, 67, 0.88) 62%,
+          rgba(239, 98, 24, 0.9) 100%
+        );
+        clip-path: polygon(
+          50% 0%,
+          67% 13%,
+          79% 34%,
+          84% 56%,
+          76% 82%,
+          58% 100%,
+          40% 100%,
+          23% 82%,
+          16% 58%,
+          20% 35%,
+          33% 14%
+        );
+        box-shadow:
+          0 0 18px rgba(255, 177, 73, 0.5),
+          0 0 34px rgba(255, 126, 36, 0.26);
+      }
+
+      .cake-flame::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 5px;
+        width: 9px;
+        height: 15px;
+        transform: translateX(-50%);
+        border-radius: 60% 60% 76% 76% / 42% 42% 90% 90%;
+        background: radial-gradient(
+          circle at 50% 24%,
+          rgba(255, 255, 248, 1) 0%,
+          rgba(255, 246, 201, 0.98) 46%,
+          rgba(255, 211, 115, 0.92) 100%
+        );
+        clip-path: polygon(
+          50% 0%,
+          67% 18%,
+          79% 42%,
+          73% 78%,
+          56% 100%,
+          36% 100%,
+          23% 78%,
+          19% 44%,
+          31% 18%
+        );
+        opacity: 0.95;
+      }
+
+      .cake-flame-glow {
+        animation: flamePulse 1.7s ease-in-out infinite;
+      }
+
+      .birthday-overlay.is-blown .cake-flame,
+      .birthday-overlay.is-blown .cake-flame-glow {
+        animation: none;
+        opacity: 0;
+      }
+
+      .birthday-overlay.is-blown .cake-smoke {
+        opacity: 1;
+        animation: smokeLift 2.2s ease-out forwards;
+      }
+
+      .birthday-overlay.is-blown .cake-wick {
+        background: linear-gradient(180deg, #d6c191 0%, #f4ead1 100%);
+      }
+
+      .birthday-leaf {
+        animation: leafWave 8s ease-in-out infinite;
+        transform-origin: bottom center;
+      }
+
+      .birthday-firework {
+        opacity: 0;
+      }
+
+      .birthday-overlay.is-celebrating .birthday-firework {
+        animation: fireworkBloom 1.4s ease-out forwards;
+      }
+
+      @keyframes overlayDim {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes sparkleIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.4);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes titleRise {
+        0% {
+          opacity: 0;
+          transform: translateY(26px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes cakeRise {
+        0% {
+          opacity: 0;
+          transform: translateY(140px) scale(0.88);
+        }
+        62% {
+          opacity: 1;
+          transform: translateY(-12px) scale(1.02);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes driftParticle {
+        0% {
+          transform: translate3d(0, 18px, 0) scale(0.9);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate3d(var(--x-shift), -110px, 0) scale(1.1);
+          opacity: 0;
+        }
+      }
+
+      @keyframes flameDance {
+        0%,
+        100% {
+          transform: translateX(-50%) scale(0.98, 1.02) rotate(-6deg);
+        }
+        20% {
+          transform: translateX(calc(-50% - 1px)) scale(1.02, 0.98) rotate(2deg);
+        }
+        45% {
+          transform: translateX(calc(-50% + 1px)) scale(0.96, 1.1) rotate(7deg);
+        }
+        70% {
+          transform: translateX(calc(-50% - 1px)) scale(1.04, 0.94)
+            rotate(-3deg);
+        }
+      }
+
+      @keyframes flamePulse {
+        0%,
+        100% {
+          transform: scale(0.88);
+          opacity: 0.42;
+        }
+        50% {
+          transform: scale(1.28);
+          opacity: 0.86;
+        }
+      }
+
+      @keyframes smokeLift {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, 8px) scale(0.5);
+        }
+        20% {
+          opacity: 0.65;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-62%, -82px) scale(1.45);
+        }
+      }
+
+      @keyframes confettiBurst {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) rotate(calc(var(--rotation) * 1deg))
+            translateY(0) scale(0.5);
+        }
+        15% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(
+              calc(-50% + var(--x) * 1px),
+              calc(-50% + var(--y) * 1px)
+            )
+            rotate(calc((var(--rotation) + 180) * 1deg)) scale(1.05);
+        }
+      }
+
+      @keyframes leafWave {
+        0%,
+        100% {
+          transform: rotate(0deg) translateY(0);
+        }
+        50% {
+          transform: rotate(6deg) translateY(-4px);
+        }
+      }
+
+      @keyframes fireworkBloom {
+        0% {
+          opacity: 0;
+          transform: scale(0.2);
+        }
+        25% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.4);
+        }
       }
 
       @keyframes floatLeaf {
@@ -207,6 +549,12 @@
       @media (max-width: 1024px) {
         .timeline-line {
           display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .birthday-stage {
+          transform-origin: center center;
         }
       }
     </style>
@@ -347,14 +695,21 @@
               aria-label="Nút gợi nhớ âm nhạc"
             >
               <svg
-                class="transition-transform duration-300"
-                width="18"
-                height="18"
+                class="transition-transform duration-300 lucide lucide-music-icon lucide-music"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
-                fill="currentColor"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
                 aria-hidden="true"
               >
-                <path d="M16 3v10.55A4 4 0 1 0 18 17V7h3V3h-5Z" />
+                <path d="M9 18V5l12-2v13" />
+                <circle cx="6" cy="18" r="3" />
+                <circle cx="18" cy="16" r="3" />
               </svg>
             </button>
 
@@ -1000,6 +1355,18 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
                 rỡ. Cảm ơn cô vì đã trở thành một phần đẹp đẽ trong những năm
                 tháng học trò của con.
               </p>
+              <button
+                id="openBirthdayExperience"
+                type="button"
+                class="mt-6 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/12 px-6 py-3 font-medium text-ivory shadow-[0_12px_32px_rgba(13,24,10,0.2)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-white/18"
+              >
+                Thổi nến và gửi điều ước
+                <span
+                  class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#f8e6a3]/20"
+                >
+                  <i data-lucide="sparkles" class="h-4 w-4"></i>
+                </span>
+              </button>
             </div>
           </div>
         </section>
@@ -1109,6 +1476,329 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
       </div>
     </div>
 
+    <div
+      id="birthdayOverlay"
+      class="birthday-overlay fixed inset-0 z-[999] flex items-center justify-center overflow-hidden px-3 py-4 sm:px-6 sm:py-6"
+      aria-hidden="true"
+    >
+      <div
+        id="birthdayOverlayBackdrop"
+        class="birthday-dim absolute inset-0 bg-[rgba(10,18,9,0.34)] backdrop-blur-xl"
+      ></div>
+      <div class="absolute inset-0 overflow-hidden">
+        <div
+          class="birthday-particle birthday-sparkle left-[12%] top-[16%] h-2 w-2 bg-[#fff5cc]"
+          style="--x-shift: 24px; animation-duration: 8s; animation-delay: 0.1s"
+        ></div>
+        <div
+          class="birthday-particle birthday-sparkle left-[22%] top-[68%] h-3 w-3 bg-[#dceaa9]"
+          style="
+            --x-shift: -30px;
+            animation-duration: 9s;
+            animation-delay: 1.4s;
+          "
+        ></div>
+        <div
+          class="birthday-particle birthday-sparkle left-[74%] top-[18%] h-2.5 w-2.5 bg-[#ffe8ae]"
+          style="
+            --x-shift: -22px;
+            animation-duration: 7.8s;
+            animation-delay: 0.8s;
+          "
+        ></div>
+        <div
+          class="birthday-particle birthday-sparkle left-[85%] top-[62%] h-2 w-2 bg-white/90"
+          style="
+            --x-shift: 18px;
+            animation-duration: 8.6s;
+            animation-delay: 1.9s;
+          "
+        ></div>
+        <div
+          class="birthday-particle birthday-sparkle left-[48%] top-[10%] h-2.5 w-2.5 bg-[#f9e8b6]"
+          style="
+            --x-shift: 12px;
+            animation-duration: 7.2s;
+            animation-delay: 0.4s;
+          "
+        ></div>
+      </div>
+
+      <button
+        id="closeBirthdayOverlay"
+        type="button"
+        class="absolute right-4 top-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-md transition duration-300 hover:scale-105 hover:bg-white/18 sm:right-6 sm:top-6"
+        aria-label="Đóng hiệu ứng sinh nhật"
+      >
+        <i data-lucide="x" class="h-5 w-5"></i>
+      </button>
+
+      <div
+        class="birthday-title hidden relative z-10 mx-auto max-w-4xl px-3 text-center opacity-0"
+      >
+        <p class="text-xs uppercase tracking-[0.35em] text-white/70 sm:text-sm">
+          Tình cảm của một người học trò
+        </p>
+        <h3
+          class="mx-auto mt-3 max-w-3xl bg-gradient-to-r from-[#fff8de] via-[#f5d685] to-[#d8efb8] bg-clip-text font-serif text-[32px] font-semibold leading-[1.04] text-transparent sm:text-[46px] lg:text-[62px]"
+        >
+          Chúc mừng sinh nhật
+          <span
+            class="block font-script text-[42px] text-[#fdf2cf] sm:text-[58px] lg:text-[72px]"
+          >
+            Người gieo mầm xanh
+          </span>
+        </h3>
+      </div>
+
+      <div
+        class="birthday-stage pointer-events-none relative z-10 flex w-full max-w-5xl flex-col items-center opacity-0"
+      >
+        <div
+          class="birthday-glow absolute left-1/2 top-[14%] h-[260px] w-[260px] -translate-x-1/2 rounded-full sm:h-[360px] sm:w-[430px]"
+        ></div>
+
+        <div class="absolute left-[9%] top-[34%] hidden lg:block">
+          <div class="birthday-leaf relative h-28 w-20 text-[#b4d080]">
+            <svg viewBox="0 0 90 140" fill="none" class="h-full w-full">
+              <path
+                d="M45 8C46 50 43 88 37 126"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <path
+                d="M45 20C25 20 11 34 8 57C27 57 41 43 45 20Z"
+                fill="currentColor"
+              />
+              <path
+                d="M41 60C58 53 70 39 74 21C56 28 46 39 41 60Z"
+                fill="#d8efb8"
+              />
+              <path
+                d="M36 92C19 90 8 102 4 120C22 121 32 111 36 92Z"
+                fill="#cfe39a"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="absolute right-[10%] top-[38%] hidden lg:block">
+          <div
+            class="birthday-leaf relative h-24 w-16 text-[#9dc16b]"
+            style="animation-delay: 1.2s"
+          >
+            <svg viewBox="0 0 90 140" fill="none" class="h-full w-full">
+              <path
+                d="M48 10C50 54 54 91 61 128"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <path
+                d="M44 35C60 30 71 16 78 4C61 9 49 19 44 35Z"
+                fill="currentColor"
+              />
+              <path
+                d="M50 76C31 70 18 82 12 101C29 104 44 94 50 76Z"
+                fill="#dbeab4"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="relative mt-10 flex flex-col items-center sm:mt-14">
+          <div
+            class="relative z-10 -mb-2 flex h-[78px] items-end justify-center -translate-y-[4px] sm:h-[84px]"
+          >
+            <div
+              class="cake-flame-glow absolute left-1/2 top-[3px] h-8 w-8 -translate-x-1/2 rounded-full bg-[#ffd370]/55 blur-md"
+            ></div>
+            <div
+              class="cake-smoke absolute left-1/2 top-0 h-8 w-8 -translate-x-1/2 rounded-full bg-white/70 blur-md opacity-0"
+            ></div>
+            <div
+              class="cake-wick absolute left-1/2 top-6 h-8 w-1 -translate-x-1/2 rounded-full bg-[#6d4c3d]"
+            ></div>
+            <div
+              class="cake-flame absolute left-1/2 top-[1px] -translate-x-1/2"
+            >
+              <div
+                class="absolute left-1/2 top-[6px] h-2 w-1.5 -translate-x-1/2 rounded-full bg-white/85 blur-[1px]"
+              ></div>
+            </div>
+          </div>
+
+          <div class="relative z-10 flex flex-col items-center">
+            <div class="relative flex flex-col items-center">
+              <div class="absolute -top-6 text-center">
+                <div
+                  class="rounded-full border border-[#efe1b4] bg-white/80 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#6e8340] shadow-[0_8px_24px_rgba(95,110,63,0.14)] backdrop-blur-sm sm:text-xs"
+                >
+                  Tặng Cô
+                </div>
+              </div>
+
+              <div
+                class="relative h-24 w-[210px] rounded-[32px] border border-[#f5ead5] bg-gradient-to-b from-[#fffef6] via-[#faf5e4] to-[#efdcb7] shadow-[0_24px_50px_rgba(51,40,22,0.12)] sm:h-28 sm:w-[250px]"
+              >
+                <div
+                  class="absolute inset-x-4 top-4 h-6 rounded-full bg-[#fffaf0]/80"
+                ></div>
+                <div
+                  class="absolute inset-x-0 top-8 h-5 bg-[linear-gradient(90deg,#d9eab8_0%,#eff6df_22%,#cfdf9f_44%,#eff6df_65%,#d3e4a5_100%)] opacity-90"
+                ></div>
+                <div
+                  class="absolute inset-x-4 bottom-4 h-10 rounded-[22px] border border-white/50 bg-white/30"
+                ></div>
+              </div>
+
+              <div
+                class="relative -mt-4 h-28 w-[300px] rounded-[42px] border border-[#f2e6d0] bg-gradient-to-b from-[#fffef6] via-[#f7efdd] to-[#e8d2a8] shadow-[0_28px_60px_rgba(45,33,22,0.16)] sm:h-32 sm:w-[360px]"
+              >
+                <div
+                  class="absolute inset-x-5 top-4 h-7 rounded-full bg-[#fffbf2]/80"
+                ></div>
+                <div
+                  class="absolute inset-x-0 top-10 h-6 bg-[linear-gradient(90deg,#d5e6aa_0%,#f4f8ea_24%,#a9c56e_45%,#eef6de_68%,#d4e5a1_100%)]"
+                ></div>
+                <div
+                  class="absolute inset-x-6 bottom-5 h-12 rounded-[28px] border border-white/45 bg-white/28"
+                ></div>
+                <div
+                  class="absolute left-6 top-12 h-10 w-10 rounded-full bg-[#f9f0d4] shadow-[0_0_0_6px_rgba(255,255,255,0.16)]"
+                ></div>
+                <div
+                  class="absolute right-7 top-14 h-6 w-6 rounded-full bg-[#b9d487]"
+                ></div>
+              </div>
+
+              <div
+                class="relative -mt-5 h-32 w-[370px] rounded-[54px] border border-[#efe3cd] bg-gradient-to-b from-[#fffef8] via-[#f8f2e3] to-[#e9d3aa] shadow-[0_36px_90px_rgba(36,28,18,0.2)] sm:h-36 sm:w-[450px]"
+              >
+                <div
+                  class="absolute inset-x-6 top-4 h-8 rounded-full bg-[#fffaf1]/82"
+                ></div>
+                <div
+                  class="absolute inset-x-0 top-11 h-7 bg-[linear-gradient(90deg,#d6e7aa_0%,#f6fbeb_18%,#a4c36f_36%,#eaf4d9_55%,#b4cf78_76%,#edf6dd_100%)]"
+                ></div>
+                <div
+                  class="absolute inset-x-8 bottom-5 h-14 rounded-[34px] border border-white/45 bg-white/28"
+                ></div>
+                <div
+                  class="absolute left-8 top-16 h-10 w-10 rounded-full bg-[#d2e79f]"
+                ></div>
+                <div
+                  class="absolute right-10 top-18 h-8 w-8 rounded-full bg-[#fff1cf]"
+                ></div>
+              </div>
+
+              <div
+                class="absolute -left-10 top-20 h-12 w-12 rounded-full border border-white/40 bg-white/20 backdrop-blur-sm sm:-left-14"
+              ></div>
+              <div
+                class="absolute -right-6 top-10 h-10 w-10 rounded-full border border-white/40 bg-[#d8efb8]/30 backdrop-blur-sm sm:-right-10"
+              ></div>
+              <div
+                class="absolute -left-6 bottom-10 h-9 w-9 rounded-full bg-[#ffeab3]/55 blur-sm"
+              ></div>
+            </div>
+
+            <div
+              class="relative mt-4 h-10 w-[410px] rounded-full bg-[radial-gradient(circle,rgba(43,33,20,0.28),rgba(43,33,20,0.06)_58%,transparent_75%)] blur-md sm:w-[500px]"
+            ></div>
+          </div>
+        </div>
+
+        <div class="birthday-firework absolute left-[18%] top-[26%] h-20 w-20">
+          <div
+            class="absolute left-1/2 top-1/2 h-1 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ffe3a3]"
+          ></div>
+          <div
+            class="absolute left-1/2 top-1/2 h-16 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d6efb0]"
+          ></div>
+          <div
+            class="absolute left-1/2 top-1/2 h-1 w-14 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-full bg-white"
+          ></div>
+          <div
+            class="absolute left-1/2 top-1/2 h-14 w-1 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-full bg-[#ffe3a3]"
+          ></div>
+        </div>
+
+        <div
+          class="birthday-firework absolute right-[16%] top-[30%] h-24 w-24"
+          style="animation-delay: 0.2s"
+        >
+          <div
+            class="absolute left-1/2 top-1/2 h-1 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#fbe5ac]"
+          ></div>
+          <div
+            class="absolute left-1/2 top-1/2 h-20 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d5ea9d]"
+          ></div>
+          <div
+            class="absolute left-1/2 top-1/2 h-1 w-16 -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-white"
+          ></div>
+          <div
+            class="absolute left-1/2 top-1/2 h-16 w-1 -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-[#fbe5ac]"
+          ></div>
+        </div>
+
+        <div class="pointer-events-none absolute inset-0">
+          <span
+            class="birthday-confetti-piece bg-[#fce4a8]"
+            style="--x: -150; --y: -90; --rotation: 14; --delay: 0"
+          ></span>
+          <span
+            class="birthday-confetti-piece bg-[#d9ecaf]"
+            style="--x: -120; --y: 120; --rotation: 46; --delay: 60"
+          ></span>
+          <span
+            class="birthday-confetti-piece bg-white"
+            style="--x: -40; --y: -140; --rotation: 82; --delay: 110"
+          ></span>
+          <span
+            class="birthday-confetti-piece bg-[#b7d283]"
+            style="--x: 30; --y: 135; --rotation: 120; --delay: 160"
+          ></span>
+          <span
+            class="birthday-confetti-piece bg-[#ffe8b2]"
+            style="--x: 95; --y: -120; --rotation: 160; --delay: 220"
+          ></span>
+          <span
+            class="birthday-confetti-piece bg-[#edf7d5]"
+            style="--x: 145; --y: 90; --rotation: 214; --delay: 260"
+          ></span>
+          <span
+            class="birthday-confetti-piece bg-[#fff3d2]"
+            style="--x: 0; --y: -165; --rotation: 300; --delay: 300"
+          ></span>
+          <span
+            class="birthday-confetti-piece bg-[#dbeab4]"
+            style="--x: -90; --y: 160; --rotation: 344; --delay: 330"
+          ></span>
+        </div>
+
+        <div
+          class="birthday-cta relative z-10 mt-4 flex flex-col items-center px-4 text-center opacity-0 sm:mt-6"
+        >
+          <button
+            id="blowCandleButton"
+            type="button"
+            class="pointer-events-auto inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/30 bg-white/12 px-7 py-3 text-[15px] font-medium text-white shadow-[0_18px_36px_rgba(14,24,14,0.2)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-white/18 sm:text-base"
+          >
+            Thổi nến
+          </button>
+          <p
+            id="birthdayWishMessage"
+            class="mt-4 max-w-3xl font-serif text-[18px] leading-[1.7] text-white/88 opacity-0 transition duration-700 sm:text-[22px]"
+          >
+            Điều ước của cô sẽ thành hiện thực, như cách cô đã làm bao trái tim
+            học trò nở hoa.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <section
       id="journeyDetailPage"
       class="hidden min-h-screen px-4 py-6 md:px-8 md:py-10"
@@ -1192,6 +1882,27 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
       const letterModalBackdrop = document.getElementById(
         "letterModalBackdrop",
       );
+      const birthdayOverlay = document.getElementById("birthdayOverlay");
+      const birthdayOverlayBackdrop = document.getElementById(
+        "birthdayOverlayBackdrop",
+      );
+      const closeBirthdayOverlayButton = document.getElementById(
+        "closeBirthdayOverlay",
+      );
+      const openBirthdayExperienceButton = document.getElementById(
+        "openBirthdayExperience",
+      );
+      const blowCandleButton = document.getElementById("blowCandleButton");
+      const birthdayWishMessage = document.getElementById(
+        "birthdayWishMessage",
+      );
+      const footer = document.querySelector("footer");
+      const birthdaySection = document.getElementById("sinh-nhat");
+      const birthdayNavLinks = document.querySelectorAll(
+        'a[href="#sinh-nhat"]',
+      );
+      let birthdayAutoShown = false;
+      let birthdayCelebrationTimer = null;
 
       menuButton?.addEventListener("click", () => {
         mobileMenu.classList.toggle("hidden");
@@ -1203,22 +1914,315 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         );
       });
 
-      musicButton?.addEventListener("click", () => {
-        musicButton.classList.toggle("scale-110");
-        musicButton.classList.toggle("brightness-110");
+      const birthdaySong = [
+        ["G4", 0.36],
+        ["G4", 0.18],
+        ["A4", 0.54],
+        ["G4", 0.54],
+        ["C5", 0.54],
+        ["B4", 1.02],
+        ["REST", 0.14],
+        ["G4", 0.36],
+        ["G4", 0.18],
+        ["A4", 0.54],
+        ["G4", 0.54],
+        ["D5", 0.54],
+        ["C5", 1.02],
+        ["REST", 0.14],
+        ["G4", 0.36],
+        ["G4", 0.18],
+        ["G5", 0.54],
+        ["E5", 0.54],
+        ["C5", 0.54],
+        ["B4", 0.54],
+        ["A4", 1.02],
+        ["REST", 0.14],
+        ["F5", 0.36],
+        ["F5", 0.18],
+        ["E5", 0.54],
+        ["C5", 0.54],
+        ["D5", 0.54],
+        ["C5", 1.02],
+      ];
+
+      const noteFrequencies = {
+        G4: 392.0,
+        A4: 440.0,
+        B4: 493.88,
+        C5: 523.25,
+        D5: 587.33,
+        E5: 659.25,
+        F5: 698.46,
+        G5: 783.99,
+      };
+
+      let audioContext = null;
+      let musicLoopTimer = null;
+      let isMusicPlaying = true;
+
+      const updateMusicButtonState = () => {
+        if (!musicButton) {
+          return;
+        }
+
+        musicButton.classList.toggle("is-playing", isMusicPlaying);
+        musicButton.classList.toggle("scale-110", isMusicPlaying);
+        musicButton.classList.toggle("brightness-110", isMusicPlaying);
+        musicButton.setAttribute(
+          "aria-label",
+          isMusicPlaying ? "Tắt nhạc Happy Birthday" : "Bật nhạc Happy Birthday",
+        );
+      };
+
+      const createAudioContext = () => {
+        if (!audioContext) {
+          const AudioContextClass =
+            window.AudioContext || window.webkitAudioContext;
+
+          if (!AudioContextClass) {
+            return null;
+          }
+
+          audioContext = new AudioContextClass();
+        }
+
+        return audioContext;
+      };
+
+      const playTone = (frequency, startTime, duration) => {
+        if (!audioContext) {
+          return;
+        }
+
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(frequency, startTime);
+        gainNode.gain.setValueAtTime(0.0001, startTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.08, startTime + 0.02);
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.0001,
+          startTime + Math.max(duration - 0.04, 0.05),
+        );
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        oscillator.start(startTime);
+        oscillator.stop(startTime + duration);
+      };
+
+      const scheduleBirthdaySong = () => {
+        if (!audioContext || !isMusicPlaying) {
+          return;
+        }
+
+        let cursor = audioContext.currentTime + 0.08;
+        let totalDuration = 0;
+
+        birthdaySong.forEach(([note, duration]) => {
+          if (note !== "REST") {
+            playTone(noteFrequencies[note], cursor, duration);
+          }
+
+          cursor += duration;
+          totalDuration += duration;
+        });
+
+        musicLoopTimer = window.setTimeout(() => {
+          scheduleBirthdaySong();
+        }, Math.round(totalDuration * 1000) + 220);
+      };
+
+      const stopBirthdaySong = () => {
+        if (musicLoopTimer) {
+          window.clearTimeout(musicLoopTimer);
+          musicLoopTimer = null;
+        }
+      };
+
+      const startBirthdaySong = async () => {
+        const context = createAudioContext();
+
+        if (!context) {
+          isMusicPlaying = false;
+          updateMusicButtonState();
+          return;
+        }
+
+        if (context.state === "suspended") {
+          try {
+            await context.resume();
+          } catch (error) {
+            return;
+          }
+        }
+
+        stopBirthdaySong();
+        scheduleBirthdaySong();
+      };
+
+      const syncMusicPlayback = async () => {
+        if (isMusicPlaying) {
+          await startBirthdaySong();
+        } else {
+          stopBirthdaySong();
+        }
+      };
+
+      updateMusicButtonState();
+      syncMusicPlayback();
+
+      const unlockBirthdaySong = async () => {
+        if (!isMusicPlaying) {
+          return;
+        }
+
+        await startBirthdaySong();
+      };
+
+      window.addEventListener("pointerdown", unlockBirthdaySong, {
+        once: true,
       });
+
+      window.addEventListener("keydown", unlockBirthdaySong, {
+        once: true,
+      });
+
+      musicButton?.addEventListener("click", async () => {
+        isMusicPlaying = !isMusicPlaying;
+        updateMusicButtonState();
+        await syncMusicPlayback();
+      });
+
+      const syncBodyLock = () => {
+        const isLetterOpen =
+          letterModal && !letterModal.classList.contains("hidden");
+        const isBirthdayOpen =
+          birthdayOverlay && birthdayOverlay.classList.contains("is-open");
+
+        document.body.classList.toggle(
+          "overflow-hidden",
+          Boolean(isLetterOpen || isBirthdayOpen),
+        );
+      };
+
+      const resetBirthdayExperience = () => {
+        birthdayOverlay?.classList.remove("is-blown", "is-celebrating");
+
+        if (blowCandleButton) {
+          blowCandleButton.disabled = false;
+          blowCandleButton.textContent = "Thổi nến";
+        }
+
+        if (birthdayWishMessage) {
+          birthdayWishMessage.classList.add("opacity-0");
+        }
+
+        if (birthdayCelebrationTimer) {
+          window.clearTimeout(birthdayCelebrationTimer);
+          birthdayCelebrationTimer = null;
+        }
+      };
+
+      const openBirthdayOverlay = (markAsShown = true) => {
+        if (!birthdayOverlay) {
+          return;
+        }
+
+        if (markAsShown) {
+          birthdayAutoShown = true;
+        }
+
+        resetBirthdayExperience();
+        birthdayOverlay.classList.add("is-open");
+        birthdayOverlay.setAttribute("aria-hidden", "false");
+        syncBodyLock();
+      };
+
+      const closeBirthdayOverlay = () => {
+        if (!birthdayOverlay) {
+          return;
+        }
+
+        birthdayOverlay.classList.remove("is-open", "is-celebrating");
+        birthdayOverlay.setAttribute("aria-hidden", "true");
+
+        window.setTimeout(() => {
+          if (!birthdayOverlay.classList.contains("is-open")) {
+            resetBirthdayExperience();
+          }
+        }, 250);
+
+        syncBodyLock();
+      };
+
+      const celebrateBirthday = () => {
+        if (!birthdayOverlay || !blowCandleButton) {
+          return;
+        }
+
+        birthdayOverlay.classList.add("is-blown", "is-celebrating");
+        blowCandleButton.disabled = true;
+        blowCandleButton.textContent = "Điều ước của cô sẽ thành hiện thực";
+        birthdayWishMessage?.classList.remove("opacity-0");
+
+        if (birthdayCelebrationTimer) {
+          window.clearTimeout(birthdayCelebrationTimer);
+        }
+
+        birthdayCelebrationTimer = window.setTimeout(() => {
+          birthdayOverlay.classList.remove("is-celebrating");
+        }, 1800);
+      };
 
       const openLetterModal = () => {
         letterModal?.classList.remove("hidden");
         letterModal?.classList.add("flex");
-        document.body.classList.add("overflow-hidden");
+        syncBodyLock();
       };
 
       const closeLetterModal = () => {
         letterModal?.classList.add("hidden");
         letterModal?.classList.remove("flex");
-        document.body.classList.remove("overflow-hidden");
+        syncBodyLock();
       };
+
+      openBirthdayExperienceButton?.addEventListener("click", () =>
+        openBirthdayOverlay(true),
+      );
+      closeBirthdayOverlayButton?.addEventListener(
+        "click",
+        closeBirthdayOverlay,
+      );
+      birthdayOverlayBackdrop?.addEventListener("click", closeBirthdayOverlay);
+      blowCandleButton?.addEventListener("click", celebrateBirthday);
+
+      birthdayNavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          window.setTimeout(() => {
+            openBirthdayOverlay(true);
+          }, 950);
+        });
+      });
+
+      if (footer && "IntersectionObserver" in window) {
+        const footerObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !birthdayAutoShown) {
+                openBirthdayOverlay(true);
+                footerObserver.disconnect();
+              }
+            });
+          },
+          {
+            threshold: 0.35,
+          },
+        );
+
+        footerObserver.observe(footer);
+      }
 
       const journeyTabs = document.querySelectorAll("[data-journey-tab]");
       const mainContent = document.getElementById("mainContent");
@@ -1364,6 +2368,19 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         setActiveJourneyTab(journeyTabs[0]);
       }
 
+      if (!("IntersectionObserver" in window) && birthdaySection && footer) {
+        window.addEventListener("scroll", () => {
+          if (birthdayAutoShown) {
+            return;
+          }
+
+          const footerRect = footer.getBoundingClientRect();
+          if (footerRect.top < window.innerHeight * 0.92) {
+            openBirthdayOverlay(true);
+          }
+        });
+      }
+
       lucide.createIcons();
 
       document.addEventListener("keydown", (event) => {
@@ -1373,6 +2390,14 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
           !letterModal.classList.contains("hidden")
         ) {
           closeLetterModal();
+        }
+
+        if (
+          event.key === "Escape" &&
+          birthdayOverlay &&
+          birthdayOverlay.classList.contains("is-open")
+        ) {
+          closeBirthdayOverlay();
         }
       });
     </script>
