@@ -1970,7 +1970,9 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         musicButton.classList.toggle("brightness-110", isMusicPlaying);
         musicButton.setAttribute(
           "aria-label",
-          isMusicPlaying ? "Tắt nhạc Happy Birthday" : "Bật nhạc Happy Birthday",
+          isMusicPlaying
+            ? "Tắt nhạc Happy Birthday"
+            : "Bật nhạc Happy Birthday",
         );
       };
 
@@ -2029,9 +2031,12 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
           totalDuration += duration;
         });
 
-        musicLoopTimer = window.setTimeout(() => {
-          scheduleBirthdaySong();
-        }, Math.round(totalDuration * 1000) + 220);
+        musicLoopTimer = window.setTimeout(
+          () => {
+            scheduleBirthdaySong();
+          },
+          Math.round(totalDuration * 1000) + 220,
+        );
       };
 
       const stopBirthdaySong = () => {
@@ -2107,6 +2112,14 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         );
       };
 
+      const isMainOverviewVisible = () =>
+        Boolean(
+          mainContent &&
+          !mainContent.classList.contains("hidden") &&
+          (!journeyDetailPage ||
+            journeyDetailPage.classList.contains("hidden")),
+        );
+
       const resetBirthdayExperience = () => {
         birthdayOverlay?.classList.remove("is-blown", "is-celebrating");
 
@@ -2126,7 +2139,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
       };
 
       const openBirthdayOverlay = (markAsShown = true) => {
-        if (!birthdayOverlay) {
+        if (!birthdayOverlay || !isMainOverviewVisible()) {
           return;
         }
 
@@ -2210,7 +2223,11 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         const footerObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting && !birthdayAutoShown) {
+              if (
+                entry.isIntersecting &&
+                !birthdayAutoShown &&
+                isMainOverviewVisible()
+              ) {
                 openBirthdayOverlay(true);
                 footerObserver.disconnect();
               }
@@ -2338,6 +2355,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
           journeyPageMessage.textContent = message;
         }
 
+        closeBirthdayOverlay();
         mainContent?.classList.add("hidden");
         journeyDetailPage?.classList.remove("hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -2375,7 +2393,10 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
           }
 
           const footerRect = footer.getBoundingClientRect();
-          if (footerRect.top < window.innerHeight * 0.92) {
+          if (
+            footerRect.top < window.innerHeight * 0.92 &&
+            isMainOverviewVisible()
+          ) {
             openBirthdayOverlay(true);
           }
         });
