@@ -2032,6 +2032,9 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
       let audioContext = null;
       let musicLoopTimer = null;
       let isMusicPlaying = true;
+      const backgroundMusic = new Audio("assets/nguoithay.mp3");
+      backgroundMusic.loop = true;
+      backgroundMusic.volume = 0.72;
 
       const updateMusicButtonState = () => {
         if (!musicButton) {
@@ -2088,7 +2091,11 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
       };
 
       const scheduleBirthdaySong = () => {
-        if (!audioContext || !isMusicPlaying) {
+        if (
+          !audioContext ||
+          !isMusicPlaying ||
+          !birthdayOverlay?.classList.contains("is-open")
+        ) {
           return;
         }
 
@@ -2119,6 +2126,27 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         }
       };
 
+      const stopBackgroundMusic = () => {
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+      };
+
+      const pauseBackgroundMusic = () => {
+        backgroundMusic.pause();
+      };
+
+      const startBackgroundMusic = async () => {
+        if (!isMusicPlaying || birthdayOverlay?.classList.contains("is-open")) {
+          return;
+        }
+
+        try {
+          await backgroundMusic.play();
+        } catch (error) {
+          return;
+        }
+      };
+
       const startBirthdaySong = async () => {
         const context = createAudioContext();
 
@@ -2136,34 +2164,43 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
           }
         }
 
+        pauseBackgroundMusic();
         stopBirthdaySong();
         scheduleBirthdaySong();
       };
 
       const syncMusicPlayback = async () => {
-        if (isMusicPlaying) {
-          await startBirthdaySong();
-        } else {
+        if (!isMusicPlaying) {
           stopBirthdaySong();
+          stopBackgroundMusic();
+          return;
         }
+
+        if (birthdayOverlay?.classList.contains("is-open")) {
+          await startBirthdaySong();
+          return;
+        }
+
+        stopBirthdaySong();
+        await startBackgroundMusic();
       };
 
       updateMusicButtonState();
       syncMusicPlayback();
 
-      const unlockBirthdaySong = async () => {
+      const unlockAudioPlayback = async () => {
         if (!isMusicPlaying) {
           return;
         }
 
-        await startBirthdaySong();
+        await syncMusicPlayback();
       };
 
-      window.addEventListener("pointerdown", unlockBirthdaySong, {
+      window.addEventListener("pointerdown", unlockAudioPlayback, {
         once: true,
       });
 
-      window.addEventListener("keydown", unlockBirthdaySong, {
+      window.addEventListener("keydown", unlockAudioPlayback, {
         once: true,
       });
 
@@ -2224,6 +2261,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         birthdayOverlay.classList.add("is-open");
         birthdayOverlay.setAttribute("aria-hidden", "false");
         syncBodyLock();
+        syncMusicPlayback();
       };
 
       const closeBirthdayOverlay = () => {
@@ -2241,6 +2279,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         }, 250);
 
         syncBodyLock();
+        syncMusicPlayback();
       };
 
       const celebrateBirthday = () => {
