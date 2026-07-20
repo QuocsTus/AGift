@@ -176,6 +176,44 @@
         height: 20px;
       }
 
+      .nav-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        transition:
+          color 0.3s ease,
+          transform 0.3s ease,
+          text-shadow 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 100%;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #a8be72 0%, #4c7132 100%);
+        transform: scaleX(0.18);
+        transform-origin: center;
+        opacity: 0;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #4c7132;
+        transform: translateY(-1px);
+        text-shadow: 0 6px 18px rgba(82, 101, 51, 0.16);
+      }
+
+      .nav-link:hover::after {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
       .note-tape::before {
         content: "";
         position: absolute;
@@ -313,7 +351,7 @@
         inset: 0;
         pointer-events: none;
         overflow: hidden;
-        z-index: 30;
+        z-index: 0;
       }
 
       .falling-heart {
@@ -625,14 +663,14 @@
       }
     </style>
   </head>
-  <body class="font-sans text-bark antialiased">
+  <body class="relative isolate font-sans text-bark antialiased">
     <div
       id="fallingHearts"
       class="falling-hearts"
       aria-hidden="true"
     ></div>
     <div
-      class="fixed inset-y-0 left-0 hidden w-28 lg:block pointer-events-none"
+      class="fixed inset-y-0 left-0 z-10 hidden w-28 pointer-events-none lg:block"
     >
       <div class="leaf-float absolute left-3 top-20 text-olive/20">
         <svg
@@ -673,7 +711,7 @@
     </div>
 
     <div
-      class="fixed inset-y-0 right-0 hidden w-28 lg:block pointer-events-none"
+      class="fixed inset-y-0 right-0 z-10 hidden w-28 pointer-events-none lg:block"
     >
       <div class="leaf-float-delay absolute right-3 top-32 text-olive/20">
         <svg
@@ -711,7 +749,7 @@
 
     <main
       id="mainContent"
-      class="relative mx-auto max-w-[1360px] px-3 py-5 md:px-5 lg:px-6"
+      class="relative z-10 mx-auto max-w-[1360px] px-3 py-5 md:px-5 lg:px-6"
     >
       <div
         class="paper-noise relative overflow-hidden rounded-[26px] border border-white/60 bg-[rgba(255,253,245,0.88)] shadow-botanical backdrop-blur-sm"
@@ -741,19 +779,19 @@
           <nav
             class="hidden items-center gap-8 font-serif text-[17px] text-barkSoft lg:flex xl:gap-12"
           >
-            <a href="#trang-chu" class="border-olive font-semibold text-bark"
+            <a href="#trang-chu" class="nav-link border-olive font-semibold text-bark"
               >Trang chủ</a
             >
-            <a href="#ky-niem" class="transition hover:text-olive"
+            <a href="#ky-niem" class="nav-link"
               >Hành trình kỷ niệm</a
             >
-            <a href="#kinh-trong" class="transition hover:text-olive"
+            <a href="#kinh-trong" class="nav-link"
               >Điều con kính trọng</a
             >
-            <a href="#loi-nhan" class="transition hover:text-olive"
+            <a href="#loi-nhan" class="nav-link"
               >Lời con muốn nói</a
             >
-            <a href="#sinh-nhat" class="transition hover:text-olive"
+            <a href="#sinh-nhat" class="nav-link"
               >Chúc mừng sinh nhật cô</a
             >
           </nav>
@@ -1874,7 +1912,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
 
     <section
       id="journeyDetailPage"
-      class="hidden min-h-screen px-4 py-6 md:px-8 md:py-10"
+      class="relative z-10 hidden min-h-screen px-4 py-6 md:px-8 md:py-10"
     >
       <div class="mx-auto max-w-5xl">
         <button
@@ -1923,7 +1961,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
       </div>
     </section>
 
-    <footer class="border-t border-[#d9cba3] bg-[#f6eed3] px-6 py-4">
+    <footer class="relative z-10 border-t border-[#d9cba3] bg-[#f6eed3] px-6 py-4">
       <div class="mx-auto max-w-6xl text-center">
         <p
           class="font-serif text-[16px] leading-relaxed text-barkSoft md:text-[18px]"
@@ -2032,9 +2070,10 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
       let audioContext = null;
       let musicLoopTimer = null;
       let isMusicPlaying = true;
+      const activeBirthdayOscillators = new Set();
       const backgroundMusic = new Audio("assets/nguoithay.mp3");
       backgroundMusic.loop = true;
-      backgroundMusic.volume = 0.72;
+      backgroundMusic.volume = 0.34;
 
       const updateMusicButtonState = () => {
         if (!musicButton) {
@@ -2086,6 +2125,10 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
 
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
+        activeBirthdayOscillators.add(oscillator);
+        oscillator.addEventListener("ended", () => {
+          activeBirthdayOscillators.delete(oscillator);
+        });
         oscillator.start(startTime);
         oscillator.stop(startTime + duration);
       };
@@ -2124,6 +2167,15 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
           window.clearTimeout(musicLoopTimer);
           musicLoopTimer = null;
         }
+
+        activeBirthdayOscillators.forEach((oscillator) => {
+          try {
+            oscillator.stop();
+          } catch (error) {
+            return;
+          }
+        });
+        activeBirthdayOscillators.clear();
       };
 
       const stopBackgroundMusic = () => {
@@ -2156,6 +2208,8 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
           return;
         }
 
+        stopBirthdaySong();
+
         if (context.state === "suspended") {
           try {
             await context.resume();
@@ -2165,7 +2219,6 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         }
 
         pauseBackgroundMusic();
-        stopBirthdaySong();
         scheduleBirthdaySong();
       };
 
