@@ -2301,7 +2301,10 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         }
       };
 
-      const openBirthdayOverlay = (markAsShown = true) => {
+      const openBirthdayOverlay = async (
+        markAsShown = true,
+        triggerBirthdayAudio = false,
+      ) => {
         if (!birthdayOverlay || !isMainOverviewVisible()) {
           return;
         }
@@ -2314,6 +2317,12 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         birthdayOverlay.classList.add("is-open");
         birthdayOverlay.setAttribute("aria-hidden", "false");
         syncBodyLock();
+
+        if (triggerBirthdayAudio && isMusicPlaying) {
+          await startBirthdaySong();
+          return;
+        }
+
         syncMusicPlayback();
       };
 
@@ -2366,9 +2375,9 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         syncBodyLock();
       };
 
-      openBirthdayExperienceButton?.addEventListener("click", () =>
-        openBirthdayOverlay(true),
-      );
+      openBirthdayExperienceButton?.addEventListener("click", async () => {
+        await openBirthdayOverlay(true, true);
+      });
       closeBirthdayOverlayButton?.addEventListener(
         "click",
         closeBirthdayOverlay,
