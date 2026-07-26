@@ -26,6 +26,7 @@
             fontFamily: {
               script: ["'Dancing Script'", "cursive"],
               serif: ["'Cormorant Garamond'", "serif"],
+              title: ["'Prata'", "serif"],
               sans: ["'Be Vietnam Pro'", "sans-serif"],
             },
             boxShadow: {
@@ -39,7 +40,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Prata&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -773,7 +774,7 @@
           </a>
 
           <nav
-            class="hidden items-center gap-8 font-serif text-[17px] text-barkSoft lg:flex xl:gap-12"
+            class="hidden items-center gap-8 font-serif text-[17px] text-barkSoft min-[1193px]:flex xl:gap-12"
           >
             <a
               href="#trang-chu"
@@ -815,7 +816,7 @@
             <button
               id="menuButton"
               type="button"
-              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-olive/10 bg-white/70 text-olive shadow-paper lg:hidden"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-olive/10 bg-white/70 text-olive shadow-paper min-[1024px]:hidden"
               aria-label="Mở menu"
             >
               <svg
@@ -834,8 +835,46 @@
         </header>
 
         <div
+          class="hidden border-b border-white/50 bg-[rgba(255,251,240,0.82)] px-7 py-4 backdrop-blur"
+        >
+          <nav
+            class="flex items-center justify-center gap-6 font-serif text-[16px] text-barkSoft"
+          >
+            <a
+              href="#trang-chu"
+              class="nav-link border-olive font-semibold text-bark"
+              >Trang chá»§</a
+            >
+            <a href="#ky-niem" class="nav-link">HÃ nh trÃ¬nh ká»· niá»‡m</a>
+            <a href="#kinh-trong" class="nav-link">Äiá»u con kÃ­nh trá»ng</a>
+            <a href="#loi-nhan" class="nav-link">Lá»i con muá»‘n nÃ³i</a>
+            <a href="#sinh-nhat" class="nav-link"
+              >ChÃºc má»«ng sinh nháº­t cÃ´</a
+            >
+          </nav>
+        </div>
+
+        <div
+          class="hidden border-b border-white/50 bg-[rgba(255,251,240,0.82)] px-7 py-4 backdrop-blur min-[1024px]:block min-[1193px]:hidden"
+        >
+          <nav
+            class="flex items-center justify-center gap-6 font-serif text-[16px] text-barkSoft"
+          >
+            <a
+              href="#trang-chu"
+              class="nav-link border-olive font-semibold text-bark"
+              >Trang chủ</a
+            >
+            <a href="#ky-niem" class="nav-link">Hành trình kỷ niệm</a>
+            <a href="#kinh-trong" class="nav-link">Điều con kính trọng</a>
+            <a href="#loi-nhan" class="nav-link">Lời con muốn nói</a>
+            <a href="#sinh-nhat" class="nav-link">Chúc mừng sinh nhật cô</a>
+          </nav>
+        </div>
+
+        <div
           id="mobileMenu"
-          class="hidden border-b border-white/50 bg-[rgba(255,251,240,0.9)] px-5 py-4 lg:hidden"
+          class="hidden border-b border-white/50 bg-[rgba(255,251,240,0.9)] px-5 py-4 min-[1024px]:hidden"
         >
           <nav class="flex flex-col gap-3 font-serif text-lg text-barkSoft">
             <a
@@ -1044,7 +1083,9 @@ Và có lẽ cũng từ khoảnh khắc đó, cô đã bắt đầu trở thành
                           class="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
                           >01</span
                         >
-                        <h3 class="font-serif text-xl font-semibold text-bark">
+                        <h3
+                          class="font-title text-[1rem] font-semibold text-bark"
+                        >
                           Lần đầu tiên
                         </h3>
                       </div>
@@ -1081,7 +1122,9 @@ Và mỗi khi nghĩ lại, con vẫn luôn thấy mình thật may mắn vì đ�
                           class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
                           >02</span
                         >
-                        <h3 class="font-serif text-xl font-semibold text-bark">
+                        <h3
+                          class="font-title text-[1rem] font-semibold text-bark"
+                        >
                           Một kỷ niệm nhỏ
                         </h3>
                       </div>
@@ -1119,7 +1162,9 @@ Bởi con đã từng được cô yêu thương như thế."
                           class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-olive text-sm font-semibold text-white"
                           >03</span
                         >
-                        <h3 class="font-serif text-xl font-semibold text-bark">
+                        <h3
+                          class="font-title text-[1rem] font-semibold text-bark"
+                        >
                           Một bài học lớn
                         </h3>
                       </div>
@@ -1157,7 +1202,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
                           >04</span
                         >
                         <h3
-                          class="font-serif text-xl font-semibold leading-tight text-bark"
+                          class="font-title text-[1rem] font-semibold leading-tight text-bark"
                         >
                           Những khoảnh khắc không thể quên
                         </h3>
@@ -1195,7 +1240,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
                       </p>
                       <h3
                         id="journeyTabTitle"
-                        class="mt-3 font-serif text-[30px] font-semibold text-bark"
+                        class="mt-3 font-title text-[30px] font-semibold text-bark"
                       >
                         Lần đầu tiên
                       </h3>
@@ -1255,7 +1300,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
                     />
                   </svg>
                 </div>
-                <h3 class="mt-4 font-serif text-[25px] font-semibold text-bark">
+                <h3 class="mt-4 font-title text-[25px] font-semibold text-bark">
                   Tận tâm
                 </h3>
                 <p
@@ -1289,7 +1334,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
                     />
                   </svg>
                 </div>
-                <h3 class="mt-4 font-serif text-[25px] font-semibold text-bark">
+                <h3 class="mt-4 font-title text-[25px] font-semibold text-bark">
                   Trách nhiệm
                 </h3>
                 <p
@@ -1316,7 +1361,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
                     <circle cx="16" cy="10" r="0.8" fill="#FFFDF5" />
                   </svg>
                 </div>
-                <h3 class="mt-4 font-serif text-[25px] font-semibold text-bark">
+                <h3 class="mt-4 font-title text-[25px] font-semibold text-bark">
                   Yêu thương
                 </h3>
                 <p
@@ -1342,7 +1387,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
                     />
                   </svg>
                 </div>
-                <h3 class="mt-4 font-serif text-[25px] font-semibold text-bark">
+                <h3 class="mt-4 font-title text-[25px] font-semibold text-bark">
                   Truyền cảm hứng
                 </h3>
                 <p
@@ -1640,7 +1685,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
           Tình cảm của một người học trò
         </p>
         <h3
-          class="mx-auto mt-3 max-w-3xl bg-gradient-to-r from-[#fff8de] via-[#f5d685] to-[#d8efb8] bg-clip-text font-serif text-[32px] font-semibold leading-[1.04] text-transparent sm:text-[46px] lg:text-[62px]"
+          class="mx-auto mt-3 max-w-3xl bg-gradient-to-r from-[#fff8de] via-[#f5d685] to-[#d8efb8] bg-clip-text font-title text-[32px] font-semibold leading-[1.04] text-transparent sm:text-[46px] lg:text-[62px]"
         >
           Chúc mừng sinh nhật
           <span
@@ -1932,7 +1977,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
             >
               <h2
                 id="journeyPageTitle"
-                class="font-serif text-[34px] font-semibold leading-tight text-bark md:text-[42px]"
+                class="font-title text-[34px] font-semibold leading-tight text-bark md:text-[42px]"
               >
                 Lần đầu tiên
               </h2>
