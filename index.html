@@ -2320,6 +2320,8 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
             journeyDetailPage.classList.contains("hidden")),
         );
 
+      const isPhoneViewport = () => window.innerWidth < 768;
+
       const resetBirthdayExperience = () => {
         birthdayOverlay?.classList.remove("is-blown", "is-celebrating");
 
@@ -2430,7 +2432,7 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         });
       });
 
-      if (footer && "IntersectionObserver" in window) {
+      if (footer && "IntersectionObserver" in window && !isPhoneViewport()) {
         const footerObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -2638,7 +2640,12 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         setActiveJourneyTab(journeyTabs[0]);
       }
 
-      if (!("IntersectionObserver" in window) && birthdaySection && footer) {
+      if (
+        !("IntersectionObserver" in window) &&
+        birthdaySection &&
+        footer &&
+        !isPhoneViewport()
+      ) {
         window.addEventListener("scroll", () => {
           if (birthdayAutoShown) {
             return;
