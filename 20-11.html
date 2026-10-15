@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20/11 - Người gieo mầm xanh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #fffdf5, #f8f6e9);
+        font-family: "Be Vietnam Pro", sans-serif;
+      }
+      .script {
+        font-family: "Dancing Script", cursive;
+      }
+      .serif {
+        font-family: "Cormorant Garamond", serif;
+      }
+      .botanical-stroke {
+        width: 128px;
+        height: 14px;
+        margin-top: 8px;
+        border-bottom: 2px dotted #4c7132;
+        opacity: 0.65;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen px-4 py-5 text-[#4b3025] sm:px-6">
+    <main
+      class="mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-white/70 bg-white/70 shadow-2xl backdrop-blur"
+    >
+      <header
+        class="relative z-20 flex items-center justify-between border-b border-white/50 bg-[rgba(255,251,240,0.72)] px-5 py-4 backdrop-blur md:px-7 lg:px-8"
+      >
+        <a href="index.html" class="shrink-0">
+          <div
+            class="script text-[26px] leading-[1.05] text-[#4c7132] md:text-[30px]"
+          >
+            Người gieo mầm xanh ♡
+          </div>
+          <div class="botanical-stroke"></div>
+        </a>
+        <nav
+          class="hidden items-center gap-3 font-serif text-[16px] text-[#5e4437] min-[1024px]:flex"
+          aria-label="Các dịp kỷ niệm"
+        >
+          <a
+            href="index.html"
+            class="inline-flex h-10 w-[106px] items-center justify-center rounded-full border border-[#4c7132]/20 bg-white/60 px-4 py-2 hover:bg-white"
+            >Sinh nhật</a
+          >
+          <a
+            href="20-10.html"
+            class="inline-flex h-10 w-[106px] items-center justify-center rounded-full border border-[#4c7132]/20 bg-white/60 px-4 py-2 hover:bg-white"
+            >20/10</a
+          >
+          <a
+            href="20-11.html"
+            class="inline-flex h-10 w-[106px] items-center justify-center rounded-full bg-[#4c7132] px-4 py-2 text-white shadow-lg"
+            >20/11</a
+          >
+        </nav>
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            class="hidden h-10 w-10 items-center justify-center rounded-full bg-[#4c7132] text-white shadow-lg md:flex"
+            aria-label="Nhạc nền"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M9 18V5l12-2v13" />
+              <circle cx="6" cy="18" r="3" />
+              <circle cx="18" cy="16" r="3" />
+            </svg>
+          </button>
+          <button
+            id="menuButton"
+            type="button"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#4c7132]/10 bg-white/70 text-[#4c7132] shadow-lg min-[1024px]:hidden"
+            aria-label="Mở menu"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </button>
+        </div>
+      </header>
+      <div
+        id="mobileMenu"
+        class="hidden border-b border-white/50 bg-[rgba(255,251,240,0.9)] px-5 py-4 min-[1024px]:hidden"
+      >
+        <nav
+          class="grid grid-cols-1 gap-3 font-serif text-lg text-[#5e4437]"
+          aria-label="Các dịp kỷ niệm"
+        >
+          <a
+            href="index.html"
+            class="inline-flex h-12 items-center justify-center rounded-xl px-4 py-3 transition hover:bg-white/60"
+            >Sinh nhật</a
+          >
+          <a
+            href="20-10.html"
+            class="inline-flex h-12 items-center justify-center rounded-xl px-4 py-3 transition hover:bg-white/60"
+            >20/10</a
+          >
+          <a
+            href="20-11.html"
+            class="inline-flex h-12 items-center justify-center rounded-xl bg-[#4c7132] px-4 py-3 text-white shadow-lg"
+            >20/11</a
+          >
+        </nav>
+      </div>
+      <section class="px-6 py-20 text-center sm:px-12">
+        <p
+          class="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-[#7a9650]"
+        >
+          Ngày Nhà giáo Việt Nam
+        </p>
+        <h1 class="script text-6xl leading-none text-[#4c7132] sm:text-8xl">
+          Tri ân ngày 20/11
+        </h1>
+        <p
+          class="serif mx-auto mt-8 max-w-2xl text-2xl leading-relaxed text-[#5e4437]"
+        >
+          Cảm ơn cô đã kiên nhẫn gieo những hạt mầm tri thức và yêu thương trong
+          mỗi thế hệ học trò.
+        </p>
+        <a
+          href="index.html"
+          class="mt-10 inline-flex rounded-full bg-[#4c7132] px-6 py-3 font-semibold text-white shadow-lg transition hover:-translate-y-1"
+          >Về trang sinh nhật</a
+        >
+      </section>
+    </main>
+    <script>
+      const menuButton = document.getElementById("menuButton");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuButton?.addEventListener("click", () =>
+        mobileMenu?.classList.toggle("hidden"),
+      );
+      mobileMenu
+        ?.querySelectorAll("a")
+        .forEach((link) =>
+          link.addEventListener("click", () =>
+            mobileMenu.classList.add("hidden"),
+          ),
+        );
+    </script>
+  </body>
+</html>

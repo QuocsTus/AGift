@@ -215,6 +215,10 @@
         opacity: 1;
       }
 
+      .nav-link::after {
+        display: none;
+      }
+
       .note-tape::before {
         content: "";
         position: absolute;
@@ -774,17 +778,24 @@
           </a>
 
           <nav
-            class="hidden items-center gap-8 font-serif text-[17px] text-barkSoft min-[1193px]:flex xl:gap-12"
+            class="hidden items-center gap-3 font-serif text-[16px] text-barkSoft min-[1024px]:flex xl:gap-4"
+            aria-label="Các dịp kỷ niệm"
           >
             <a
-              href="#trang-chu"
-              class="nav-link border-olive font-semibold text-bark"
-              >Trang chủ</a
+              href="index.html"
+              class="nav-link inline-flex h-10 w-[106px] items-center justify-center rounded-full bg-olive px-4 py-2 text-white shadow-paper"
+              >Sinh nhật</a
             >
-            <a href="#ky-niem" class="nav-link">Hành trình kỷ niệm</a>
-            <a href="#kinh-trong" class="nav-link">Điều con kính trọng</a>
-            <a href="#loi-nhan" class="nav-link">Lời con muốn nói</a>
-            <a href="#sinh-nhat" class="nav-link">Chúc mừng sinh nhật cô</a>
+            <a
+              href="20-10.html"
+              class="nav-link inline-flex h-10 w-[106px] items-center justify-center rounded-full border border-olive/20 bg-white/60 px-4 py-2 hover:bg-white"
+              >20/10</a
+            >
+            <a
+              href="20-11.html"
+              class="nav-link inline-flex h-10 w-[106px] items-center justify-center rounded-full border border-olive/20 bg-white/60 px-4 py-2 hover:bg-white"
+              >20/11</a
+            >
           </nav>
 
           <div class="flex items-center gap-3">
@@ -835,72 +846,27 @@
         </header>
 
         <div
-          class="hidden border-b border-white/50 bg-[rgba(255,251,240,0.82)] px-7 py-4 backdrop-blur"
-        >
-          <nav
-            class="flex items-center justify-center gap-6 font-serif text-[16px] text-barkSoft"
-          >
-            <a
-              href="#trang-chu"
-              class="nav-link border-olive font-semibold text-bark"
-              >Trang chá»§</a
-            >
-            <a href="#ky-niem" class="nav-link">HÃ nh trÃ¬nh ká»· niá»‡m</a>
-            <a href="#kinh-trong" class="nav-link">Äiá»u con kÃ­nh trá»ng</a>
-            <a href="#loi-nhan" class="nav-link">Lá»i con muá»‘n nÃ³i</a>
-            <a href="#sinh-nhat" class="nav-link"
-              >ChÃºc má»«ng sinh nháº­t cÃ´</a
-            >
-          </nav>
-        </div>
-
-        <div
-          class="hidden border-b border-white/50 bg-[rgba(255,251,240,0.82)] px-7 py-4 backdrop-blur min-[1024px]:block min-[1193px]:hidden"
-        >
-          <nav
-            class="flex items-center justify-center gap-6 font-serif text-[16px] text-barkSoft"
-          >
-            <a
-              href="#trang-chu"
-              class="nav-link border-olive font-semibold text-bark"
-              >Trang chủ</a
-            >
-            <a href="#ky-niem" class="nav-link">Hành trình kỷ niệm</a>
-            <a href="#kinh-trong" class="nav-link">Điều con kính trọng</a>
-            <a href="#loi-nhan" class="nav-link">Lời con muốn nói</a>
-            <a href="#sinh-nhat" class="nav-link">Chúc mừng sinh nhật cô</a>
-          </nav>
-        </div>
-
-        <div
           id="mobileMenu"
           class="hidden border-b border-white/50 bg-[rgba(255,251,240,0.9)] px-5 py-4 min-[1024px]:hidden"
         >
-          <nav class="flex flex-col gap-3 font-serif text-lg text-barkSoft">
+          <nav
+            class="grid grid-cols-1 gap-3 font-serif text-lg text-barkSoft"
+            aria-label="Các dịp kỷ niệm"
+          >
             <a
-              href="#trang-chu"
-              class="rounded-xl bg-white/60 px-4 py-3 text-olive"
-              >Trang chủ</a
+              href="index.html"
+              class="inline-flex h-12 items-center justify-center rounded-xl bg-olive px-4 py-3 text-white shadow-paper"
+              >Sinh nhật</a
             >
             <a
-              href="#ky-niem"
-              class="rounded-xl px-4 py-3 transition hover:bg-white/60"
-              >Hành trình kỷ niệm</a
+              href="20-10.html"
+              class="inline-flex h-12 items-center justify-center rounded-xl px-4 py-3 transition hover:bg-white/60"
+              >20/10</a
             >
             <a
-              href="#kinh-trong"
-              class="rounded-xl px-4 py-3 transition hover:bg-white/60"
-              >Điều con kính trọng</a
-            >
-            <a
-              href="#loi-nhan"
-              class="rounded-xl px-4 py-3 transition hover:bg-white/60"
-              >Lời con muốn nói</a
-            >
-            <a
-              href="#sinh-nhat"
-              class="rounded-xl px-4 py-3 transition hover:bg-white/60"
-              >Chúc mừng sinh nhật cô</a
+              href="20-11.html"
+              class="inline-flex h-12 items-center justify-center rounded-xl px-4 py-3 transition hover:bg-white/60"
+              >20/11</a
             >
           </nav>
         </div>
