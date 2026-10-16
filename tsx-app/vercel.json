@@ -3,6 +3,18 @@
     {
       "source": "/20-10",
       "destination": "/index.html"
+    },
+    {
+      "source": "/20-10/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/20-11",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/20-11/",
+      "destination": "/index.html"
     }
   ]
 }
