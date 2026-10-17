@@ -5,23 +5,24 @@ type SectionPageKind = "october20" | "november20";
 const content: Record<
   SectionPageKind,
   Array<{
-    eyebrow: string;
+    eyebrow?: string;
     title: string;
     text: string;
     text2?: string;
     text3?: string;
+    text4?: string;
+    wish?: string;
   }>
 > = {
   october20: [
     {
       eyebrow: "20 tháng 10",
-      title: "Chúc mừng ngày của cô",
-      text: "Chúc cô luôn rạng rỡ, dịu dàng và nhận thật nhiều yêu thương trong ngày đặc biệt này.",
+      title: "Một ngày dành riêng cho cô.",
+      text: "Có những người phụ nữ làm cho thế giới quanh mình trở nên dịu dàng hơn. Và với con, cô là một người như thế.",
     },
     {
-      eyebrow: "Lời mở đầu",
       title: "Gửi cô bằng tất cả yêu thương",
-      text: "Có những người phụ nữ làm cho thế giới quanh mình trở nên dịu dàng và ấm áp hơn. Và với con, cô là một người như thế.",
+      text: "Có lẽ cô đã quen với việc quan tâm đến mọi người, quen với việc luôn phải mạnh mẽ và chu toàn. Nhưng hôm nay, con muốn cô biết rằng: những điều cô làm, những yêu thương cô trao đi đều có người ghi nhớ. Và con thật lòng biết ơn vì trong hành trình trưởng thành của mình con có duyên được gặp cô.",
     },
     {
       eyebrow: "",
@@ -32,14 +33,18 @@ const content: Record<
       text3: "Chúc cô mộ ngày 20/10 thật đẹp!",
     },
     {
-      eyebrow: "Kỷ niệm",
       title: "Những khoảnh khắc dịu dàng",
-      text: "Mong những ngày phía trước sẽ luôn mang đến cho cô thật nhiều nụ cười và bình an.",
+      text: "🌸 Mong cô luôn có thời gian dành cho chính mình.",
+      text2: "🌸 Mong mỗi ngày của cô đều có những niềm vui nhỏ bé.",
+      text3:
+        "🌸 Mong những vất vả cô âm thầm gánh vác được đáp lại bằng sự quan tâm và sẽ chia.",
+      text4:
+        "🌸 Mong cô luôn được sống vui vẻ, bình yên và làm những điều khiến mình hành phúc.",
     },
     {
-      eyebrow: "Lời kết",
       title: "Chúc cô một ngày 20/10 thật vui",
-      text: "Chúc cô luôn hạnh phúc, khỏe mạnh và được yêu thương theo cách cô xứng đáng nhận.",
+      text: "Con không mong cô lúc nào cũng phải mạnh mẽ, cũng chẳng mong cô luôn hoàn hảo trong mắt mọi người. Con chỉ mong cô có thật nhiều bình an, có người để sẽ chia những lúc mệt mỏi và luôn tìm thấy niềm vui trong những điều giản dị nhất.",
+      wish: "Chúc mừng ngày 20/10, cô Bình của con!",
     },
   ],
   november20: [
@@ -72,41 +77,60 @@ const content: Record<
 };
 
 export function FiveSectionPage({ kind }: { kind: SectionPageKind }) {
+  const renderOrder = [0, 2, 3, 1, 4];
+
   return (
     <div className="november-page">
-      {content[kind].map((section, index) => (
+      {renderOrder.map((originalIndex, renderIndex) => {
+        const section = content[kind][originalIndex];
+        const isSectionTwo = originalIndex === 1;
+        const isSectionThree = originalIndex === 2;
+        const wish =
+          section.wish ??
+          (renderIndex === renderOrder.length - 1
+            ? "Chúc cô luôn bình an, hạnh phúc và ngập tràn yêu thương!"
+            : undefined);
+
         /* Legacy section 3 background/text is preserved below for the fallback page. */
-        kind === "october20" && index === 2 ? <SecretLetterSection key="secret-letter-section" /> : <section
-          className={`november-section ${index === 1 ? "november-section--fixed-background" : ""}`}
-          key={section.eyebrow}
-          style={{ backgroundImage: `url(/assets/section-${index + 1}.png)` }}
-        >
-          <div
-            className={`november-content ${index === 1 ? "november-content--section-two" : index === 2 ? "november-content--tilted" : index % 2 === 0 ? "november-content--left" : "november-content--center"}`}
+        return kind === "october20" && isSectionThree ? (
+          <SecretLetterSection key="secret-letter-section" />
+        ) : (
+          <section
+            className={`november-section ${isSectionTwo ? "november-section--fixed-background" : ""}`}
+            key={`${kind}-${originalIndex}`}
+            style={{
+              backgroundImage: `url(/assets/section-${originalIndex + 1}.png)`,
+            }}
           >
-            <p className="eyebrow">{section.eyebrow}</p>
-            <h1>{section.title}</h1>
-            <p className="november-message">{section.text}</p>
-            {section.text2 && (
-              <p className="november-message november-message--additional">
-                {section.text2}
-              </p>
-            )}
-            {section.text3 && (
-              <p className="november-message november-message--additional">
-                {section.text3}
-              </p>
-            )}
-            {index === content[kind].length - 1 && (
-              <span className="handwritten">Thương gửi cô ♡</span>
-            )}
-          </div>
-          {index < content[kind].length - 1 && (
-            <span className="section-scroll-hint">↓</span>
-          )}
-        </section>
-      ))}
+            <div
+              className={`november-content ${isSectionTwo ? "november-content--section-two" : isSectionThree ? "november-content--tilted" : originalIndex === 4 ? "november-content--section-five" : originalIndex % 2 === 0 ? "november-content--left" : "november-content--center"}`}
+            >
+              <p className="eyebrow">{section.eyebrow}</p>
+              <h1>{section.title}</h1>
+              <p className="november-message">{section.text}</p>
+              {section.text2 && (
+                <p className="november-message november-message--additional">
+                  {section.text2}
+                </p>
+              )}
+              {section.text3 && (
+                <p className="november-message november-message--additional">
+                  {section.text3}
+                </p>
+              )}
+              {section.text4 && (
+                <p className="november-message november-message--additional">
+                  {section.text4}
+                </p>
+              )}
+              {wish && <p className="november-wish">{wish}</p>}
+              {renderIndex === renderOrder.length - 1 && (
+                <span className="handwritten">Thương gửi cô ♥</span>
+              )}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }
-

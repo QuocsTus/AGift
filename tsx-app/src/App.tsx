@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { LegacyBirthdayPage } from "./components/LegacyBirthdayPage";
 import { FiveSectionPage } from "./components/FiveSectionPage";
+import { FallingPetals } from "./components/FallingPetals";
 
 function BirthdayPage() {
   return <LegacyBirthdayPage />;
@@ -24,5 +25,10 @@ function RouteTransition() {
 }
 
 export default function App() {
-  return <RouteTransition />;
+  return (
+    <div className="app-shell">
+      <FallingPetals />
+      <RouteTransition />
+    </div>
+  );
 }

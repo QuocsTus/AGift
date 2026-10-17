@@ -53,6 +53,49 @@ a {
 .november-page {
   background: #fff1f4;
 }
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+}
+.global-falling-petals {
+  position: absolute;
+  z-index: 45;
+  inset: 0;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.global-falling-petals span {
+  position: absolute;
+  top: -28px;
+  display: block;
+  border-radius: 70% 30% 70% 30%;
+  background: linear-gradient(135deg, #f4b7c5, #d95d82);
+  box-shadow: 0 2px 7px rgba(155, 45, 82, 0.12);
+  opacity: 0.5;
+  animation: globalPetalFall linear infinite;
+}
+@keyframes globalPetalFall {
+  0% {
+    top: -28px;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 100%;
+    transform: translate3d(var(--petal-drift), 0, 0) rotate(330deg);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .global-falling-petals span {
+    animation: none;
+    opacity: 0.28;
+  }
+}
 .secret-v2-section {
   --v2-ivory: #fff9f4;
   --v2-blush: #fde8eb;
@@ -1333,7 +1376,7 @@ a {
   );
 }
 .november-content {
-  max-width: 570px;
+  max-width: 670px;
   border: 0;
   background: transparent;
   box-shadow: none;
@@ -1355,6 +1398,11 @@ a {
   text-align: center;
   transform: translate(-124px, -18px) rotate(-3deg);
 }
+.november-content--section-five {
+  margin-left: auto;
+  margin-right: 148px;
+  text-align: right;
+}
 .november-content h1 {
   margin-bottom: 22px;
   color: #7d3d3a;
@@ -1371,6 +1419,15 @@ a {
 }
 .november-message--additional {
   margin-top: 12px;
+}
+.november-wish {
+  margin: 28px 0 0;
+  color: #a83f62;
+  font:
+    700 clamp(22px, 2.4vw, 34px)/1.25 "Dancing Script",
+    cursive;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 12px rgba(255, 247, 249, 0.9);
 }
 .section-scroll-hint {
   position: absolute;
