@@ -148,7 +148,7 @@ a {
 }
 .secret-v2-header {
   flex-shrink: 0;
-  max-width: 720px;
+  max-width: 750px;
   text-align: center;
 }
 .secret-v2-header h2 {
@@ -1398,6 +1398,10 @@ a {
   text-align: center;
   transform: translate(-124px, -18px) rotate(-3deg);
 }
+.november-content--section-three {
+  margin-inline: auto;
+  text-align: center;
+}
 .november-content--section-five {
   margin-left: auto;
   margin-right: 148px;
@@ -1428,6 +1432,40 @@ a {
     cursive;
   letter-spacing: 0.01em;
   text-shadow: 0 2px 12px rgba(255, 247, 249, 0.9);
+}
+.november-content--section-three .november-message {
+  opacity: 0;
+}
+.november-content--section-three.section-three-is-visible .november-message {
+  animation: sectionThreeTextReveal 1.2s ease both;
+}
+.november-content--section-three .november-message:nth-of-type(2) {
+  animation-delay: 0.25s;
+}
+.november-content--section-three .november-message:nth-of-type(3) {
+  animation-delay: 0.55s;
+}
+.november-content--section-three .november-message:nth-of-type(4) {
+  animation-delay: 0.85s;
+}
+.november-content--section-three .november-message:nth-of-type(5) {
+  animation-delay: 1.15s;
+}
+@keyframes sectionThreeTextReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .november-content--section-three .november-message {
+    opacity: 1;
+    animation: none;
+  }
 }
 .section-scroll-hint {
   position: absolute;
@@ -1501,6 +1539,45 @@ a {
   background: #4c7132;
   border-color: #4c7132;
   transform: translateY(-1px);
+}
+.occasion-link--disabled {
+  flex-direction: column;
+  cursor: not-allowed;
+  opacity: 0.7;
+  line-height: 1;
+}
+.occasion-link--disabled small,
+.mobile-link--disabled small {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 50%;
+  visibility: hidden;
+  opacity: 0;
+  margin-top: 3px;
+  color: #a66a79;
+  font: 600 8px/1 "Be Vietnam Pro", sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.occasion-link--disabled,
+.mobile-link--disabled {
+  position: relative;
+}
+.occasion-link--disabled:hover small,
+.occasion-link--disabled:focus-visible small,
+.mobile-link--disabled:hover small,
+.mobile-link--disabled:focus-visible small {
+  visibility: visible;
+  opacity: 1;
+}
+.occasion-link--disabled:hover {
+  color: inherit;
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(76, 113, 50, 0.2);
+  transform: none;
 }
 .header-actions {
   display: flex;
@@ -1589,6 +1666,10 @@ a {
 .mobile-link.active {
   color: white;
   background: #4c7132;
+}
+.mobile-link--disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 .occasion-page {
   display: grid;

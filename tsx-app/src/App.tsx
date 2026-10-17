@@ -24,10 +24,16 @@ function RouteTransition() {
   );
 }
 
+function GlobalEffects() {
+  const location = useLocation();
+
+  return location.pathname === "/20-10" ? <FallingPetals /> : null;
+}
+
 export default function App() {
   return (
     <div className="app-shell">
-      <FallingPetals />
+      <GlobalEffects />
       <RouteTransition />
     </div>
   );

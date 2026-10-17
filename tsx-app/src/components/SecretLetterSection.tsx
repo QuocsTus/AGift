@@ -315,8 +315,9 @@ export function SecretLetterSection() {
 
       <div className="secret-v2-content">
         <header className="secret-v2-header">
-          <h2 id="secret-v2-title">Bức thư bí mật ♡</h2>
-          <p>Có những điều con chưa từng nói thành lời...</p>
+          <h2 id="secret-v2-title">
+            Có những điều con chưa từng nói thành lời...
+          </h2>
           <small>Một lá thư đặc biệt dành riêng cho cô.</small>
         </header>
 

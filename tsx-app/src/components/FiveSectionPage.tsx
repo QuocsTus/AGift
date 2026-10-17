@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { SecretLetterSection } from "./SecretLetterSection";
 
 type SectionPageKind = "october20" | "november20";
@@ -78,13 +79,33 @@ const content: Record<
 
 export function FiveSectionPage({ kind }: { kind: SectionPageKind }) {
   const renderOrder = [0, 2, 3, 1, 4];
+  const sectionThreeRef = useRef<HTMLElement>(null);
+  const [sectionThreeVisible, setSectionThreeVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionThreeRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setSectionThreeVisible(true);
+        observer.disconnect();
+      },
+      { threshold: 0.25 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [kind]);
 
   return (
     <div className="november-page">
       {renderOrder.map((originalIndex, renderIndex) => {
         const section = content[kind][originalIndex];
         const isSectionTwo = originalIndex === 1;
-        const isSectionThree = originalIndex === 2;
+        const isSectionThree = renderIndex === 2;
+        const isSecretLetterSection = kind === "october20" && originalIndex === 2;
         const wish =
           section.wish ??
           (renderIndex === renderOrder.length - 1
@@ -92,18 +113,19 @@ export function FiveSectionPage({ kind }: { kind: SectionPageKind }) {
             : undefined);
 
         /* Legacy section 3 background/text is preserved below for the fallback page. */
-        return kind === "october20" && isSectionThree ? (
+        return isSecretLetterSection ? (
           <SecretLetterSection key="secret-letter-section" />
         ) : (
           <section
             className={`november-section ${isSectionTwo ? "november-section--fixed-background" : ""}`}
             key={`${kind}-${originalIndex}`}
+            ref={isSectionThree ? sectionThreeRef : undefined}
             style={{
               backgroundImage: `url(/assets/section-${originalIndex + 1}.png)`,
             }}
           >
             <div
-              className={`november-content ${isSectionTwo ? "november-content--section-two" : isSectionThree ? "november-content--tilted" : originalIndex === 4 ? "november-content--section-five" : originalIndex % 2 === 0 ? "november-content--left" : "november-content--center"}`}
+              className={`november-content ${isSectionTwo ? "november-content--section-two" : isSectionThree ? `november-content--section-three${sectionThreeVisible ? " section-three-is-visible" : ""}` : originalIndex === 4 ? "november-content--section-five" : originalIndex % 2 === 0 ? "november-content--left" : "november-content--center"}`}
             >
               <p className="eyebrow">{section.eyebrow}</p>
               <h1>{section.title}</h1>
