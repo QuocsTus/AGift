@@ -38,13 +38,13 @@ const content: Record<
       text: "🌸 Mong cô luôn có thời gian dành cho chính mình.",
       text2: "🌸 Mong mỗi ngày của cô đều có những niềm vui nhỏ bé.",
       text3:
-        "🌸 Mong những vất vả cô âm thầm gánh vác được đáp lại bằng sự quan tâm và sẽ chia.",
+        "🌸 Mong những vất vả cô âm thầm gánh vác được đáp lại bằng sự quan tâm và sẻ chia.",
       text4:
         "🌸 Mong cô luôn được sống vui vẻ, bình yên và làm những điều khiến mình hành phúc.",
     },
     {
       title: "Chúc cô một ngày 20/10 thật vui",
-      text: "Con không mong cô lúc nào cũng phải mạnh mẽ, cũng chẳng mong cô luôn hoàn hảo trong mắt mọi người. Con chỉ mong cô có thật nhiều bình an, có người để sẽ chia những lúc mệt mỏi và luôn tìm thấy niềm vui trong những điều giản dị nhất.",
+      text: "Con không mong cô lúc nào cũng phải mạnh mẽ, cũng chẳng mong cô luôn hoàn hảo trong mắt mọi người. Con chỉ mong cô có thật nhiều bình an, có người để sẻ chia những lúc mệt mỏi và luôn tìm thấy niềm vui trong những điều giản dị nhất.",
       wish: "Chúc mừng ngày 20/10, cô Bình của con!",
     },
   ],
@@ -105,7 +105,8 @@ export function FiveSectionPage({ kind }: { kind: SectionPageKind }) {
         const section = content[kind][originalIndex];
         const isSectionTwo = originalIndex === 1;
         const isSectionThree = renderIndex === 2;
-        const isSecretLetterSection = kind === "october20" && originalIndex === 2;
+        const isSecretLetterSection =
+          kind === "october20" && originalIndex === 2;
         const wish =
           section.wish ??
           (renderIndex === renderOrder.length - 1
