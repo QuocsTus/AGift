@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const links: Array<{ to: string; label: string; disabled?: boolean }> = [
@@ -9,8 +9,38 @@ const links: Array<{ to: string; label: string; disabled?: boolean }> = [
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [musicPlaying, setMusicPlaying] = useState(true);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const location = useLocation();
+
+  useEffect(() => {
+    const audio = new Audio("/assets/nguoithay.mp3");
+    audio.loop = true;
+    audio.volume = 0.34;
+    audioRef.current = audio;
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+      audioRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (!musicPlaying) {
+      audio.pause();
+      audio.currentTime = 0;
+      return;
+    }
+
+    void audio.play().catch(() => {
+      // Trình duyệt có thể chặn autoplay; trạng thái sẽ trở về đúng là đang tắt.
+      setMusicPlaying(false);
+    });
+  }, [musicPlaying]);
 
   return (
     <>
@@ -34,7 +64,14 @@ export function SiteHeader() {
         </nav>
 
         <div className="header-actions">
-          <button className={musicPlaying ? "music-badge music-badge--playing" : "music-badge"} type="button" aria-label={musicPlaying ? "Tắt nhạc" : "Bật nhạc"} onClick={() => setMusicPlaying((playing) => !playing)}>
+          <button
+            className={musicPlaying ? "music-badge music-badge--playing" : "music-badge music-badge--muted"}
+            type="button"
+            aria-label={musicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+            aria-pressed={musicPlaying}
+            title={musicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+            onClick={() => setMusicPlaying((playing) => !playing)}
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M9 18V5l12-2v13" />
               <circle cx="6" cy="18" r="3" />

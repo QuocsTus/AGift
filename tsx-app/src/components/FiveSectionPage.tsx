@@ -104,6 +104,10 @@ export function FiveSectionPage({ kind }: { kind: SectionPageKind }) {
     <div className="november-page">
       {renderOrder.map((originalIndex, renderIndex) => {
         const section = content[kind][originalIndex];
+        const sectionTitle =
+          kind === "october20" && originalIndex === 0
+            ? "Một ngày dành riêng cho cô"
+            : section.title;
         const isSectionTwo = originalIndex === 1;
         const isSectionThree = renderIndex === 2;
         const isSecretLetterSection =
@@ -127,10 +131,10 @@ export function FiveSectionPage({ kind }: { kind: SectionPageKind }) {
             }}
           >
             <div
-              className={`november-content ${isSectionTwo ? "november-content--section-two" : isSectionThree ? `november-content--section-three${sectionThreeVisible ? " section-three-is-visible" : ""}` : originalIndex === 4 ? "november-content--section-five" : originalIndex % 2 === 0 ? "november-content--left" : "november-content--center"}`}
+              className={`november-content ${kind === "october20" && originalIndex === 0 ? "november-content--first" : isSectionTwo ? "november-content--section-two" : isSectionThree ? `november-content--section-three${sectionThreeVisible ? " section-three-is-visible" : ""}` : originalIndex === 4 ? "november-content--section-five" : originalIndex % 2 === 0 ? "november-content--left" : "november-content--center"}`}
             >
               <p className="eyebrow">{section.eyebrow}</p>
-              <h1>{section.title}</h1>
+              <h1>{sectionTitle}</h1>
               <p className="november-message">{section.text}</p>
               {section.text2 && (
                 <p className="november-message november-message--additional">

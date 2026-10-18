@@ -1461,6 +1461,20 @@ a {
   backdrop-filter: none;
   text-shadow: 0 2px 18px rgba(255, 247, 249, 0.8);
 }
+.november-content--first {
+  max-width: min(760px, 100%);
+  padding: clamp(28px, 4vw, 54px);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 28px;
+  background: rgba(255, 249, 244, 0.56);
+  box-shadow: 0 22px 60px rgba(110, 57, 57, 0.14);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+.november-content--first h1 {
+  max-width: 680px;
+  color: #6a4954;
+}
 .november-content--center {
   margin-inline: auto;
   text-align: center;
@@ -1695,10 +1709,6 @@ a {
 .music-badge:hover svg {
   transform: rotate(8deg);
 }
-.music-badge--playing {
-  transform: scale(1.1);
-  filter: brightness(1.1);
-}
 .music-badge--playing::after {
   content: "";
   position: absolute;
@@ -1711,14 +1721,20 @@ a {
   transform: translate(-50%, -50%) rotate(-32deg);
   box-shadow: 0 0 8px rgba(255, 248, 222, 0.28);
 }
+.music-badge--muted::after {
+  display: none;
+}
 .menu-button {
   display: none;
   width: 44px;
   height: 44px;
-  color: #4c7132;
+  color: #000;
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(76, 113, 50, 0.15);
   cursor: pointer;
+}
+.menu-button svg {
+  stroke: #000;
 }
 .mobile-nav {
   position: absolute;
