@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { October20OriginalEffect } from "./October20OriginalEffect";
 import { SecretLetterSection } from "./SecretLetterSection";
 
 type SectionPageKind = "october20" | "november20";
@@ -35,15 +36,15 @@ const content: Record<
     },
     {
       title: "Những khoảnh khắc dịu dàng",
-      text: "🌸 Mong cô luôn có thời gian dành cho chính mình.",
-      text2: "🌸 Mong mỗi ngày của cô đều có những niềm vui nhỏ bé.",
+      text: "🌸 Con mong cô luôn có thời gian dành cho chính mình.",
+      text2: "🌸 Con mong mỗi ngày của cô đều có những niềm vui nhỏ bé.",
       text3:
-        "🌸 Mong những vất vả cô âm thầm gánh vác được đáp lại bằng sự quan tâm và sẻ chia.",
+        "🌸 Con mong những vất vả cô âm thầm gánh vác được đáp lại bằng sự quan tâm và sẻ chia.",
       text4:
-        "🌸 Mong cô luôn được sống vui vẻ, bình yên và làm những điều khiến mình hành phúc.",
+        "🌸 Con mong cô luôn được sống vui vẻ, bình yên và làm những điều khiến mình hạnh phúc.",
     },
     {
-      title: "Chúc cô một ngày 20/10 thật vui",
+      title: "Con kính chúc cô một ngày 20/10 thật vui",
       text: "Con không mong cô lúc nào cũng phải mạnh mẽ, cũng chẳng mong cô luôn hoàn hảo trong mắt mọi người. Con chỉ mong cô có thật nhiều bình an, có người để sẻ chia những lúc mệt mỏi và luôn tìm thấy niềm vui trong những điều giản dị nhất.",
       wish: "Chúc mừng ngày 20/10, cô Bình của con!",
     },
@@ -148,12 +149,18 @@ export function FiveSectionPage({ kind }: { kind: SectionPageKind }) {
               )}
               {wish && <p className="november-wish">{wish}</p>}
               {renderIndex === renderOrder.length - 1 && (
-                <span className="handwritten">Thương gửi cô ♥</span>
+                <p>
+                  <p className="handwritten">Thương gửi cô ♥</p>
+                  <p className="handwritten">
+                    Học trò Phan Thế Nam dành tặng cô Lê Thị Bình
+                  </p>
+                </p>
               )}
             </div>
           </section>
         );
       })}
+      {kind === "october20" && <October20OriginalEffect />}
     </div>
   );
 }

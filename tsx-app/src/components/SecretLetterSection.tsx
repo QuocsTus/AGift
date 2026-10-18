@@ -248,7 +248,7 @@ export function SecretLetterSection() {
           <div className="secret-v2-letter-copy">
             <p>
               Nhân ngày 20/10, con chúc cô luôn mạnh khỏe, bình an, hạnh phúc và
-              luôn rạng rỡ với nụ cười thật tươi. Mong rằng người luôn dành
+              luôn rạng rỡ với nụ cười thật tươi. Con mong rằng người luôn dành
               nhiều yêu thương cho mọi người như cô cũng sẽ nhận lại thật nhiều
               yêu thương, luôn có những ngày nhẹ nhàng, những niềm vui bất ngờ
               và thật nhiều điều tốt đẹp trong cuộc sống.
@@ -261,7 +261,7 @@ export function SecretLetterSection() {
             </p>
             <p>Con chúc cô một ngày 20/10 thật đẹp!</p>
             <p className="secret-v2-signature">
-              <span>Từ con ♡</span>
+              <span>Từ con Phan Thế Nam ♡ ♡ ♡</span>
             </p>
           </div>
           <button
