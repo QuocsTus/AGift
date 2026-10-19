@@ -220,6 +220,9 @@
         transform: scale(0.85) translateY(30px);
         transition: transform 1.2s cubic-bezier(0.2, 1.3, 0.3, 1);
       }
+      .box:focus {
+        outline: none;
+      }
       #card.show .box {
         transform: none;
       }
@@ -513,7 +516,7 @@
         }
         .box {
           margin: 0 auto;
-          padding-bottom: 2.5rem;
+          padding-bottom: 1.5rem;
           transform: scale(0.78);
           transform-origin: top center;
         }
@@ -535,7 +538,7 @@
     </div>
 
     <div id="card">
-      <div class="box">
+      <div class="box" id="box" tabindex="-1">
         <span class="badge">20 · 10 &nbsp;Ngày Phụ nữ Việt Nam</span>
         <!-- <div class="big">💖</div>
         <p class="t1">Gửi riêng cho</p>
@@ -549,7 +552,7 @@
           <small>nhấn phím Space để thả thêm tim ♡</small>
         </div>
         <footer class="footer-note">
-          Học trò Phan Thế Nam thiết kế và thực hiện
+          Học trò Phan Thế Nam thiết kế và thực hiện dành tặng cô Lê Thị Bình
         </footer>
       </div>
     </div>
@@ -573,7 +576,6 @@
         ],
         quote:
           "Cảm ơn cô vì đã xuất hiện và làm thế giới này dịu dàng hơn rất nhiều.",
-        sign: "Học trò Phan Thế Nam dành tặng cô Lê Thị Bình",
       };
       const POOL = "ABCDEFGHIKLMNOPQRSTUVXYĂÂÊÔƠƯ0123456789";
       const rnd = (a) =>
@@ -796,6 +798,16 @@
       function showCard() {
         $("stage").classList.add("hide");
         $("card").classList.add("show");
+        requestAnimationFrame(() => {
+          const box = $("box");
+          if (!box) return;
+          box.focus({ preventScroll: true });
+          box.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "center",
+          });
+        });
         setInterval(heart, 280);
         heartStorm();
         let i = 0;

@@ -26,7 +26,7 @@ export function October20OriginalEffect() {
       {enabled ? (
         <iframe
           className="october-original-effect__frame"
-          src="/20-10-effect.html?v=fixed-message-height-1"
+          src="/20-10-effect.html?v=focus-box-center-1"
           title="Hiệu ứng lời chúc 20/10"
           loading="lazy"
         />
