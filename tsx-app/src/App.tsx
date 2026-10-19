@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { LegacyBirthdayPage } from "./components/LegacyBirthdayPage";
 import { FiveSectionPage } from "./components/FiveSectionPage";
@@ -9,18 +9,6 @@ function BirthdayPage() {
 }
 
 function HomeRoute() {
-  const today = new Date();
-  const month = today.getMonth();
-  const day = today.getDate();
-
-  if (month === 9 && day === 20) {
-    return <Navigate to="/20-10" replace />;
-  }
-
-  if (month === 10 && day === 20) {
-    return <Navigate to="/20-11" replace />;
-  }
-
   return <BirthdayPage />;
 }
 

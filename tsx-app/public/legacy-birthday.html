@@ -2269,6 +2269,20 @@ Những khoảnh khắc ấy có thể sẽ dần lùi xa theo thời gian, như
         await startBackgroundMusic();
       };
 
+      window.addEventListener("message", (event) => {
+        if (
+          event.origin !== window.location.origin ||
+          event.data?.type !== "agift:stop-birthday-music"
+        ) {
+          return;
+        }
+
+        isMusicPlaying = false;
+        stopBirthdaySong();
+        stopBackgroundMusic();
+        updateMusicButtonState();
+      });
+
       updateMusicButtonState();
       syncMusicPlayback();
 
