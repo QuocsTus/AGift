@@ -9,7 +9,8 @@ const links: Array<{ to: string; label: string; disabled?: boolean }> = [
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [musicPlaying, setMusicPlaying] = useState(false);
+  // Try to start music automatically. Browsers may still require a user gesture.
+  const [musicPlaying, setMusicPlaying] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const location = useLocation();
 
@@ -19,7 +20,24 @@ export function SiteHeader() {
     audio.volume = 0.34;
     audioRef.current = audio;
 
+    const unlockAudio = () => {
+      void audio.play().then(() => {
+        setMusicPlaying(true);
+        window.removeEventListener("pointerdown", unlockAudio);
+        window.removeEventListener("keydown", unlockAudio);
+      }).catch(() => {
+        // The browser may continue to block playback until a later gesture.
+      });
+    };
+
+    // Attempt autoplay immediately, then retry after the first user interaction.
+    unlockAudio();
+    window.addEventListener("pointerdown", unlockAudio);
+    window.addEventListener("keydown", unlockAudio);
+
     return () => {
+      window.removeEventListener("pointerdown", unlockAudio);
+      window.removeEventListener("keydown", unlockAudio);
       audio.pause();
       audio.currentTime = 0;
       audioRef.current = null;
