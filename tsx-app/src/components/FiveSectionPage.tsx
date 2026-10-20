@@ -37,7 +37,7 @@ const content: Record<
     {
       title: "Những khoảnh khắc dịu dàng",
       text: "🌸 Con mong cô luôn có thời gian dành cho chính mình.",
-      text2: "🌸 Con mong mỗi ngày của cô đều có những niềm vui nhỏ bé.",
+      text2: "🌸 Con mong mỗi ngày của cô đều có những niềm vui nho nhỏ.",
       text3:
         "🌸 Con mong những vất vả cô âm thầm gánh vác được đáp lại bằng sự quan tâm và sẻ chia.",
       text4:
