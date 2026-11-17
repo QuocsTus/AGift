@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const links: Array<{ to: string; label: string; disabled?: boolean }> = [
+const links: Array<{ to: string; label: string }> = [
   { to: "/", label: "Sinh nhật" },
   { to: "/20-10", label: "20/10" },
-  { to: "/20-11", label: "20/11", disabled: true },
+  { to: "/20-11", label: "20/11" },
 ];
 
 export function SiteHeader() {
@@ -69,12 +69,7 @@ export function SiteHeader() {
         </Link>
 
         <nav className="desktop-nav" aria-label="Các dịp kỷ niệm">
-          {links.map((link) => link.disabled ? (
-            <span className="occasion-link occasion-link--disabled" key={link.to} aria-disabled="true">
-              <span>{link.label}</span>
-              <small>Coming soon</small>
-            </span>
-          ) : (
+          {links.map((link) => (
             <Link className={location.pathname === link.to ? "occasion-link active" : "occasion-link"} key={link.to} to={link.to}>
               {link.label}
             </Link>
@@ -106,12 +101,7 @@ export function SiteHeader() {
 
       {menuOpen && (
         <nav className="mobile-nav" aria-label="Các dịp kỷ niệm">
-          {links.map((link) => link.disabled ? (
-            <span className="mobile-link mobile-link--disabled" key={link.to} aria-disabled="true">
-              <span>{link.label}</span>
-              <small>Coming soon</small>
-            </span>
-          ) : (
+          {links.map((link) => (
             <Link className={location.pathname === link.to ? "mobile-link active" : "mobile-link"} key={link.to} to={link.to} onClick={() => setMenuOpen(false)}>
               {link.label}
             </Link>

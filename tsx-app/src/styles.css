@@ -53,6 +53,11 @@ a {
   border: 0;
   background: #fff3f5;
 }
+.legacy-frame--november {
+  height: 100vh;
+  min-height: 100vh;
+  background: #02040a;
+}
 .route-transition {
   min-width: 0;
   max-width: 100%;
