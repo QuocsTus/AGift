@@ -60,11 +60,13 @@ export function SiteHeader() {
     });
   }, [musicPlaying]);
 
+  const isNovember = location.pathname === "/20-11";
+
   return (
     <>
-      <header className="site-header">
+      <header className={isNovember ? "site-header site-header--november" : "site-header"}>
         <Link className="brand" to="/" onClick={() => setMenuOpen(false)}>
-          <span>Người gieo mầm xanh ♡</span>
+          <span>Người thầy - dấu ấn không phai ...</span>
           <i aria-hidden="true" />
         </Link>
 

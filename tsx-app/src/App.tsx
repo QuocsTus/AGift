@@ -14,7 +14,11 @@ function HomeRoute() {
 }
 
 function November20Route() {
-  return <November20LegacyPage />;
+  return (
+    <Layout>
+      <November20LegacyPage />
+    </Layout>
+  );
 }
 
 function RouteTransition() {
