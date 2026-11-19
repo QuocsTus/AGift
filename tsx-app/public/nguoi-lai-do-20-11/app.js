@@ -844,7 +844,6 @@ document.addEventListener("DOMContentLoaded", () => {
         tributeVideo.currentTime = 0;
         tributeVideo.play().catch(() => {});
       }
-      showToast("▶ Video đang tiếp tục phát lặp...");
     });
   }
 
