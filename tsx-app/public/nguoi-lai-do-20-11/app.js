@@ -585,6 +585,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ".fly, .burst, .decode-heart",
     );
     oldFlies.forEach((el) => el.remove());
+    startHeartLoop();
 
     if (decodeStage) {
       decodeStage.classList.remove("active");
@@ -659,7 +660,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (++landed === total) {
-      if (decodeHint) decodeHint.textContent = "Giải mã thành công 💖";
+      if (decodeHint) decodeHint.textContent = "";
       heartStorm();
       showToast("❤️ Thông điệp đã trọn vẹn — Đang mở bức thư tri ân...");
       if (decodeReplayBar) decodeReplayBar.hidden = false;
@@ -692,6 +693,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const HEARTS_POOL = ["❤️", "💖", "✨", "✦", "💛", "🌸", "🌹"];
+  let heartLoopTimer = null;
   function spawnHeart() {
     if (!decodeStage) return;
     const h = document.createElement("div");
@@ -701,6 +703,18 @@ document.addEventListener("DOMContentLoaded", () => {
     h.style.cssText = `left:${R(5, 95)}%;font-size:${R(18, 36)}px;animation-duration:${d}s;--dx:${R(-60, 60)}px;--rot:${R(-35, 35)}deg;opacity:${R(0.7, 1)}`;
     decodeStage.appendChild(h);
     setTimeout(() => h.remove(), d * 1000);
+  }
+
+  function startHeartLoop() {
+    if (!decodeStage || heartLoopTimer) return;
+
+    const emitHeart = () => {
+      const activeHearts = decodeStage.querySelectorAll(".decode-heart").length;
+      if (activeHearts < 14) spawnHeart();
+    };
+
+    emitHeart();
+    heartLoopTimer = window.setInterval(emitHeart, 720);
   }
 
   function heartStorm() {
