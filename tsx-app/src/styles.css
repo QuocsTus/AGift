@@ -54,10 +54,10 @@ a {
   background: #fff3f5;
 }
 .legacy-frame--november {
-  height: calc(100vh - 86px);
-  min-height: calc(100vh - 86px);
-  margin-top: 86px;
-  background: #02040a;
+  height: calc(100vh - 74px);
+  min-height: calc(100vh - 74px);
+  margin-top: 74px;
+  background: #2a0a24;
 }
 .route-transition {
   min-width: 0;
@@ -1616,45 +1616,49 @@ a {
 }
 /* Header màu navy khi ở trang 20-11 */
 .site-header--november {
-  background: rgba(6, 19, 38, 0.72);
-  border-bottom-color: rgba(244, 199, 119, 0.18);
-  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+  background:
+    linear-gradient(110deg, rgba(255, 255, 255, 0.58), rgba(255, 226, 237, 0.42)),
+    rgba(255, 245, 248, 0.24);
+  border-bottom-color: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 8px 26px rgba(126, 61, 102, 0.16);
+  backdrop-filter: blur(18px) saturate(1.12);
+  -webkit-backdrop-filter: blur(18px) saturate(1.12);
 }
 .site-header--november .brand {
-  color: #F4C777;
+  color: #8a416b;
 }
 .site-header--november .brand i {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='20' viewBox='0 0 180 20' fill='none'%3E%3Cpath d='M2 10C28 10 42 5 62 5C82 5 86 15 106 15C127 15 135 8 152 8C162 8 170 10 178 12' stroke='%23F4C777' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='1 7'/%3E%3C/svg%3E");
 }
 .site-header--november .desktop-nav {
-  color: #FFE2A4;
+  color: #7a3c61;
 }
 .site-header--november .occasion-link {
-  color: #FFE2A4;
-  border-color: rgba(244, 199, 119, 0.3);
-  background: rgba(244, 199, 119, 0.08);
+  color: #7a3c61;
+  border-color: rgba(138, 65, 107, 0.28);
+  background: rgba(255, 255, 255, 0.34);
 }
 .site-header--november .occasion-link:hover,
 .site-header--november .occasion-link.active {
-  color: #061326;
-  background: #F4C777;
-  border-color: #F4C777;
+  color: #ffffff;
+  background: #c9789e;
+  border-color: #c9789e;
 }
 .site-header--november .music-badge {
-  background: rgba(244, 199, 119, 0.15);
-  border: 1px solid rgba(244, 199, 119, 0.4);
-  color: #F4C777;
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(138, 65, 107, 0.34);
+  color: #8a416b;
 }
 .site-header--november .music-badge:hover {
-  background: rgba(244, 199, 119, 0.28);
+  background: rgba(255, 214, 228, 0.72);
 }
 .site-header--november .menu-button {
-  color: #F4C777;
-  background: rgba(244, 199, 119, 0.12);
-  border-color: rgba(244, 199, 119, 0.3);
+  color: #8a416b;
+  background: rgba(255, 255, 255, 0.38);
+  border-color: rgba(138, 65, 107, 0.3);
 }
 .site-header--november .menu-button svg {
-  stroke: #F4C777;
+  stroke: #8a416b;
 }
 
 .brand {

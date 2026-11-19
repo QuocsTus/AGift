@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const lineConfigs = [
     { el: decLine1, text: "Con trai Phan Thế Nam", cls: "fly-script" },
-    { el: decLine2, text: "chúc mừng cô Lê Thị Bình", cls: "" },
+    { el: decLine2, text: "Chúc mừng cô Lê Thị Bình", cls: "" },
     { el: decLine3, text: "nhân ngày Nhà giáo Việt Nam 20/11", cls: "" },
   ];
 
