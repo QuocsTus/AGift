@@ -412,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Sau này, dù con có lớn lên, đi xa và gặp gỡ thêm nhiều người, con vẫn sẽ luôn tự hào khi nhắc về cô – người hiệu trưởng, người mẹ thứ hai – một chỗ dựa thân thương, một vòng tay tinh thần và một niềm tin ấm áp mà con đã may mắn có được.",
         "Nhân ngày Nhà giáo Việt Nam 20/11, con kính chúc cô luôn mạnh khỏe, bình an, hạnh phúc và mãi giữ trong tim ngọn lửa nhiệt huyết với nghề. Con mong rằng mỗi ngày đến trường của cô đều ngập tràn niềm vui, mỗi nỗ lực đều được đền đáp bằng những yêu thương và trên hành trình gieo mầm tri thức, cô sẽ luôn nhận lại thật nhiều điều tốt đẹp. Con chúc cô không chỉ có một ngày 20/11 thật ý nghĩa, mà còn có thật nhiều tháng năm rực rỡ với những thế hệ học trò luôn yêu quý và biết ơn cô.",
         "Đây không phải một món quà hoàn hảo nhưng là một dấu ấn chân thành. Không chỉ dành cho ngày 20/11, mà còn để nhắc con nhớ rằng mình đã may mắn biết bao khi được làm học trò của cô.",
-        "Chúc mừng ngày Nhà giáo Việt Nam 20/11! Con luôn biết ơn cô, hôm nay và cả những năm tháng sau này. ❤️"
+        "Chúc mừng ngày Nhà giáo Việt Nam 20/11! Con luôn biết ơn cô, hôm nay và cả những năm tháng sau này. ❤️",
       ].join("\n\n");
 
       const sigElement = document.querySelector(".sig-name");
@@ -441,7 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const lineConfigs = [
     { el: decLine1, text: "Con trai Phan Thế Nam", cls: "fly-script" },
     { el: decLine2, text: "chúc mừng cô Lê Thị Bình", cls: "" },
-    { el: decLine3, text: "nhân ngày Nhà giáo Việt Nam 20/11", cls: "" }
+    { el: decLine3, text: "nhân ngày Nhà giáo Việt Nam 20/11", cls: "" },
   ];
 
   let flyers = [];
@@ -488,9 +488,15 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < 3; i++) {
         const s = document.createElement("span");
         s.className = "slot heart-slot";
-        s.innerHTML = '<span class="h-ico">❤️</span><span class="h-sub">/-heart</span>';
+        s.innerHTML = '<span class="h-ico">❤️</span>';
         decLine4.appendChild(s);
-        flyers.push({ slot: s, c: "❤️", isHeart: true, cls: "fly-heart", real: true });
+        flyers.push({
+          slot: s,
+          c: "❤️",
+          isHeart: true,
+          cls: "fly-heart",
+          real: true,
+        });
       }
     }
 
@@ -509,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "#FFD700",
       "#FFF5E6",
       "#FFB75B",
-      "#ff9da7"
+      "#ff9da7",
     ]);
     e.textContent = f.isHeart ? "❤️" : rnd(POOL);
     decodeStage.appendChild(e);
@@ -527,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
       vr: R(-3, 3),
       t: R(0, 6),
       sc: 1,
-      state: "fly"
+      state: "fly",
     });
   }
 
@@ -575,7 +581,9 @@ document.addEventListener("DOMContentLoaded", () => {
     decodeAnimId = null;
 
     // Xóa flyers cũ khỏi DOM
-    const oldFlies = decodeStage.querySelectorAll(".fly, .burst, .decode-heart");
+    const oldFlies = decodeStage.querySelectorAll(
+      ".fly, .burst, .decode-heart",
+    );
     oldFlies.forEach((el) => el.remove());
 
     if (decodeStage) {
@@ -588,7 +596,8 @@ document.addEventListener("DOMContentLoaded", () => {
     landed = 0;
 
     if (decodeHint) {
-      decodeHint.textContent = "✦ Bấm vào video bất kỳ đâu để giải mã thông điệp ✦";
+      decodeHint.textContent =
+        "✦ Bấm vào video bất kỳ đâu để giải mã thông điệp ✦";
     }
     if (decodePromptBtn) {
       decodePromptBtn.style.display = "inline-flex";
@@ -704,7 +713,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Dừng video loop
     if (tributeVideo) {
-      try { tributeVideo.pause(); } catch (_) {}
+      try {
+        tributeVideo.pause();
+      } catch (_) {}
     }
     if (tributeFrame) {
       tributeFrame.classList.add("is-paused");
@@ -747,9 +758,12 @@ document.addEventListener("DOMContentLoaded", () => {
       flyers
         .filter((f) => !f.real)
         .forEach((f) => {
-          addDecodeTimeout(() => {
-            if (f.el) f.el.style.opacity = 0;
-          }, R(200, 1500));
+          addDecodeTimeout(
+            () => {
+              if (f.el) f.el.style.opacity = 0;
+            },
+            R(200, 1500),
+          );
           addDecodeTimeout(() => {
             f.state = "done";
             if (f.el) f.el.remove();
@@ -775,7 +789,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Tương tác bấm vào video hoặc nút giải mã
   if (tributeFrame) {
     tributeFrame.addEventListener("click", (e) => {
-      if (e.target.closest("#btnDecodeReplay") || e.target.closest("#btnDecodeLetter")) {
+      if (
+        e.target.closest("#btnDecodeReplay") ||
+        e.target.closest("#btnDecodeLetter")
+      ) {
         return;
       }
       if (!decoding && landed < total) {
@@ -800,7 +817,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (decodeReplayBar) decodeReplayBar.hidden = true;
       if (decodePromptBtn) decodePromptBtn.style.display = "inline-flex";
-      if (decodeHint) decodeHint.textContent = "✦ Bấm vào video bất kỳ đâu để giải mã thông điệp ✦";
+      if (decodeHint)
+        decodeHint.textContent =
+          "✦ Bấm vào video bất kỳ đâu để giải mã thông điệp ✦";
       if (tributeFrame) tributeFrame.classList.remove("is-paused");
       const clickPrompt = document.getElementById("videoClickPrompt");
       if (clickPrompt) clickPrompt.style.display = "";

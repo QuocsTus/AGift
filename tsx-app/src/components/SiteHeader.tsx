@@ -17,14 +17,30 @@ export function SiteHeader() {
   useEffect(() => {
     const audio = new Audio("/assets/nguoithay.mp3");
     audio.loop = true;
+    audio.autoplay = true;
+    audio.preload = "auto";
     audio.volume = 0.34;
     audioRef.current = audio;
 
+    const notifyIframes = (playing: boolean) => {
+      const iframes = document.querySelectorAll("iframe");
+      iframes.forEach((f) => {
+        try {
+          f.contentWindow?.postMessage({ type: "agift:music-state", playing }, window.location.origin);
+        } catch (_) {}
+      });
+    };
+
     const unlockAudio = () => {
-      void audio.play().then(() => {
+      const a = audioRef.current;
+      if (!a) return;
+      void a.play().then(() => {
         setMusicPlaying(true);
+        notifyIframes(true);
         window.removeEventListener("pointerdown", unlockAudio);
         window.removeEventListener("keydown", unlockAudio);
+        window.removeEventListener("touchstart", unlockAudio);
+        window.removeEventListener("click", unlockAudio);
       }).catch(() => {
         // The browser may continue to block playback until a later gesture.
       });
@@ -34,10 +50,27 @@ export function SiteHeader() {
     unlockAudio();
     window.addEventListener("pointerdown", unlockAudio);
     window.addEventListener("keydown", unlockAudio);
+    window.addEventListener("touchstart", unlockAudio);
+    window.addEventListener("click", unlockAudio);
+
+    const handleMessage = (e: MessageEvent) => {
+      if (e.origin !== window.location.origin) return;
+      if (e.data?.type === "agift:unlock-music" || e.data?.type === "agift:user-gesture") {
+        unlockAudio();
+      } else if (e.data?.type === "agift:toggle-music") {
+        setMusicPlaying((playing) => !playing);
+      } else if (e.data?.type === "agift:request-music-state") {
+        notifyIframes(Boolean(audioRef.current && !audioRef.current.paused));
+      }
+    };
+    window.addEventListener("message", handleMessage);
 
     return () => {
       window.removeEventListener("pointerdown", unlockAudio);
       window.removeEventListener("keydown", unlockAudio);
+      window.removeEventListener("touchstart", unlockAudio);
+      window.removeEventListener("click", unlockAudio);
+      window.removeEventListener("message", handleMessage);
       audio.pause();
       audio.currentTime = 0;
       audioRef.current = null;
@@ -47,17 +80,41 @@ export function SiteHeader() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+    let retryTimer: number | null = null;
+
+    const notifyIframes = (playing: boolean) => {
+      const iframes = document.querySelectorAll("iframe");
+      iframes.forEach((f) => {
+        try {
+          f.contentWindow?.postMessage({ type: "agift:music-state", playing }, window.location.origin);
+        } catch (_) {}
+      });
+    };
 
     if (!musicPlaying) {
       audio.pause();
       audio.currentTime = 0;
+      notifyIframes(false);
       return;
     }
 
-    void audio.play().catch(() => {
-      // Trình duyệt có thể chặn autoplay; trạng thái sẽ trở về đúng là đang tắt.
-      setMusicPlaying(false);
-    });
+    const tryPlay = () => {
+      void audio.play().then(() => {
+        notifyIframes(true);
+      }).catch(() => {
+        // Một số trình duyệt chặn autoplay có tiếng. Giữ trạng thái bật và tự thử lại.
+        // Nếu người dùng đã tắt nhạc trong lúc chờ, không khởi động lại nữa.
+        if (musicPlaying && audioRef.current === audio) {
+          retryTimer = window.setTimeout(tryPlay, 1200);
+        }
+      });
+    };
+
+    tryPlay();
+
+    return () => {
+      if (retryTimer !== null) window.clearTimeout(retryTimer);
+    };
   }, [musicPlaying]);
 
   const isNovember = location.pathname === "/20-11";
